@@ -61,7 +61,7 @@ a:hover, a:active {
 	background-color: #C74350;
 	color: #fff;
 	text-decoration: none;
-	text-shadow: 1px 1px 1px #333;
+	/*text-shadow: 1px 1px 1px #333;*/
 }
 
 h1 a:hover {
@@ -180,6 +180,7 @@ img.left, figure.left {float: left; margin: 0 2em 2em 0;}
 	#banner h1 strong {font-size: 0.36em; font-weight: normal;}
 	
 	/* Main Nav */
+    /* TODO: Get rid of hover stuff, change style of bar */
 	#banner nav {
 		background: #000305;
 		font-size: 1.143em;
@@ -190,9 +191,9 @@ img.left, figure.left {float: left; margin: 0 2em 2em 0;}
 		text-align: center;
 		width: 800px;
 		
-		border-radius: 5px;
-		-moz-border-radius: 5px;
-		-webkit-border-radius: 5px;
+		border-radius: 0px;
+		-moz-border-radius: 0px;
+		-webkit-border-radius: 0px;
 	}
 	
 	#banner nav ul {list-style: none; margin: 0 auto; width: 800px;}
