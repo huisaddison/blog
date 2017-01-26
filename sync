@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
-rm -rf output/
 pelican content/ -s publishconf.py
 rsync -r --delete output/ ../huisaddison.github.io/blog/
+rm -rf output/
