@@ -83,7 +83,7 @@ $$
 $$
 rather than the maximum likelihood estimator
 $$
-Sigma^* = \frac{1}{n}\sum_{i=1}^n X_lX_l^\top - \bar X \bar X^\top
+\Sigma^* = \frac{1}{n}\sum_{i=1}^n X_lX_l^\top - \bar X \bar X^\top
 $$
 as $\bar X \bar X^\top$ is a higher order term and can be neglected in the
 analysis of the rate.  As such, we defined a new tapering estimator:
