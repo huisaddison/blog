@@ -19,6 +19,9 @@ TRANSLATION_FEED_ATOM = None
 AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 
+PLUGIN_PATHS = ['../pelican-plugins']
+PLUGINS = ['render_math']
+
 # Blogroll
 '''
 LINKS = (('Pelican', 'http://getpelican.com/'),
