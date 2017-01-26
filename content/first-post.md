@@ -5,4 +5,4 @@ Tags: pelican, python
 Slug: my-first-post
 Summary: First post in Pelican.
 
-This is my first on my blog powered by Pelican!
+This is my first post on my blog powered by Pelican!
