@@ -16,6 +16,7 @@
                 <nav><ul>
                     <li class="active"><a href="/category/mathematics.html">Mathematics</a></li>
                     <li><a href="/category/python.html">Python</a></li>
+                    <li><a href="/category/statistics.html">Statistics</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
 
@@ -39,14 +40,16 @@ plugin.</p>
 <p>Here, we show the Cauchy-Schwarz Inequality:
 </p>
 <div class="math">$$
-\langle f, g\rangle^2 = \langle f, f\rangle \cdot \langle g, g\rangle
+\langle f, g\rangle^2 \leq \langle f, f\rangle \cdot \langle g, g\rangle
 $$</div>
 <p>And here is an align environment:
 </p>
 <div class="math">\begin{align*}
-    N^{m}
-    &amp;=  \Vert M_l^{m} - \mathbf{E}M_l^{m}\Vert  \\
-    &amp;=  \Vert \breve\Sigma - \mathbf{E}\breve\Sigma\Vert  \\
+w_{ij} = \begin{cases}
+    1   &amp;\text{ for } |i - j| \leq \frac{k}{2}   \\
+    2 - 2\frac{|i-j|}{k} &amp;\text{ for } \frac{k}{2} \leq |i - j| \leq k  \\
+    0   &amp;\text{ otherwise }
+\end{cases}
 \end{align*}</div>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",

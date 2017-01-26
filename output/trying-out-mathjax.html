@@ -14,8 +14,9 @@
         <header id="banner" class="body">
                 <h1><a href="/">huisaddison </a></h1>
                 <nav><ul>
-                    <li class="active"><a href="/category/mathematics.html">Mathematics</a></li>
+                    <li class="active"><a href="/category/pelican.html">Pelican</a></li>
                     <li><a href="/category/python.html">Python</a></li>
+                    <li><a href="/category/statistics.html">Statistics</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
 <section id="content" class="body">
@@ -35,7 +36,7 @@
         <address class="vcard author">
                 By                         <a class="url fn" href="/author/addison.html">Addison</a>
         </address>
-<p>In <a href="/category/mathematics.html">Mathematics</a>.</p>
+<p>In <a href="/category/pelican.html">Pelican</a>.</p>
 <p>tags: <a href="/tag/pelican.html">pelican</a> <a href="/tag/mathjax.html">mathjax</a> <a href="/tag/math.html">math</a> </p>
 </footer><!-- /.post-info -->      <p>Pelican has the ability to render mathematics using
 <a href="https://www.mathjax.org/">MathJax</a> by way of the <a href="https://github.com/getpelican/pelican-plugins/tree/master/render_math">Math
@@ -44,14 +45,16 @@ plugin.</p>
 <p>Here, we show the Cauchy-Schwarz Inequality:
 </p>
 <div class="math">$$
-\langle f, g\rangle^2 = \langle f, f\rangle \cdot \langle g, g\rangle
+\langle f, g\rangle^2 \leq \langle f, f\rangle \cdot \langle g, g\rangle
 $$</div>
 <p>And here is an align environment:
 </p>
 <div class="math">\begin{align*}
-    N^{m}
-    &amp;=  \Vert M_l^{m} - \mathbf{E}M_l^{m}\Vert  \\
-    &amp;=  \Vert \breve\Sigma - \mathbf{E}\breve\Sigma\Vert  \\
+w_{ij} = \begin{cases}
+    1   &amp;\text{ for } |i - j| \leq \frac{k}{2}   \\
+    2 - 2\frac{|i-j|}{k} &amp;\text{ for } \frac{k}{2} \leq |i - j| \leq k  \\
+    0   &amp;\text{ otherwise }
+\end{cases}
 \end{align*}</div>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
