@@ -168,7 +168,7 @@ img.left, figure.left {float: left; margin: 0 2em 2em 0;}
 }
 
 	/* Banner */
-	#banner h1 {font-size: 3.571em; line-height: 0;}
+	#banner h1 {font-size: 2.571em; line-height: 0;}
 	#banner h1 a:link, #banner h1 a:visited {
 		color: #000305;
 		display: block;
@@ -189,8 +189,8 @@ img.left, figure.left {float: left; margin: 0 2em 2em 0;}
 	/* Main Nav */
     /* TODO: Get rid of hover stuff, change style of bar */
 	#banner nav {
-		background: #000305;
-		font-size: 1.143em;
+		color: #00356B;
+		font-size: 1.500em;
 		height: 40px;
 		line-height: 30px;
 		margin: 0 auto 2em auto;
@@ -206,21 +206,23 @@ img.left, figure.left {float: left; margin: 0 2em 2em 0;}
 	#banner nav ul {list-style: none; margin: 0 auto; width: 800px;}
 	#banner nav li {float: left; display: inline; margin: 0;}
 	
+    /*
 	#banner nav a:link, #banner nav a:visited {
-		color: #fff;
+		color: #00356B;
 		display: inline-block;
 		height: 30px;
 		padding: 5px 1.5em;
 		text-decoration: none;
 	}
+    */
     /*
 	#banner nav a:hover, #banner nav a:active,
-    */
 	#banner nav .active a:link, #banner nav .active a:visited {
 		background: #C74451;
 		color: #fff;
 		text-shadow: none !important;
 	}
+    */
 	
 	#banner nav li:first-child a {
 		border-top-left-radius: 0px;
