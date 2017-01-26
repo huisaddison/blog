@@ -11,6 +11,8 @@ sys.path.append(os.curdir)
 from pelicanconf import *
 
 SITEURL = 'http://huisaddison.com/blog'
+SITENAME = 'huisaddison/blog'
+
 RELATIVE_URLS = False
 
 DELETE_OUTPUT_DIRECTORY = True
