@@ -18,6 +18,8 @@ DELETE_OUTPUT_DIRECTORY = True
 PLUGIN_PATHS = ['../pelican-plugins']
 PLUGINS = ['render_math']
 
+THEMES = '../pelican-themes/pelican-simplegrey'
+
 
 # Following items are often useful when publishing
 

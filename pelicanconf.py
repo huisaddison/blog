@@ -21,6 +21,7 @@ AUTHOR_FEED_RSS = None
 
 PLUGIN_PATHS = ['../pelican-plugins']
 PLUGINS = ['render_math']
+THEME = '../pelican-themes/pelican-simplegrey'
 
 # Blogroll
 '''
