@@ -12,16 +12,18 @@
 @import url("reset.css");
 @import url("pygment.css");
 @import url("typogrify.css");
-@import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz&subset=latin);
-
+@import url('https://fonts.googleapis.com/css?family=Lora|Raleway');
 
 /***** Global *****/
 /* Body */
 body {
     background: #F5F4EF;
+    background: #FFFFFF;
     color: #000305;
+    font-family: 'Lora', serif; 
+    /*
     font-size: 87.5%; /* Base font size: 14px */
-    font-family: 'Trebuchet MS', Trebuchet, 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    */
     line-height: 1.429;
     margin: 0;
     padding: 0;
@@ -40,7 +42,7 @@ h1, h2, h3, h4, h5, h6 {
 	font-weight: 400;
 	line-height: 1.1;
 	margin-bottom: .8em;
-    font-family: 'Yanone Kaffeesatz', arial, serif;
+    font-family: 'Raleway', Arial, sans-serif;
 }
 
 h3, h4, h5, h6 { margin-top: .8em; }
