@@ -54,3 +54,4 @@ w_{ij} = \begin{cases}
 The bandwidth is $k$ on either side along the diagonal; shrinkage begins on
 each side at $k/2$.  
 
+(To be continued!)
