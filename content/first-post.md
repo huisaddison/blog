@@ -11,4 +11,5 @@ working with, and because it plays well with MathJax via the [Math
 Render](https://github.com/barrysteyn/pelican_plugin-render_math) plugin.
 
 Please look forward to posts about statistics, cooking, programming, and
-amateur photography.  
+amateur photography.  And expect the theme of to change within the coming
+days (or weeks!)
