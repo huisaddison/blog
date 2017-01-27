@@ -81,7 +81,7 @@ _for $k = O(n), \log p = O(n)$ and some constant $C > 0$._
 
 To prove this, the authors assume $\mu = 0$ and analyze
 $$
-\tilde \Sigma = \frac{1}{n}\sum_{i=1}^n X_l X_l^\cap
+\tilde \Sigma = \frac{1}{n}\sum_{i=1}^n X_l X_l^\top
 $$
 rather than the maximum likelihood estimator
 $$
