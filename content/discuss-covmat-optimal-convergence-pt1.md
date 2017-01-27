@@ -10,7 +10,7 @@ for Covariance Matrix Estimation](https://arxiv.org/abs/1010.3866).  To aid my
 digestion of this paper, I will be writing about it on this blog.  This post
 covers the authors' justification of **Theorem 2**.  I highly recommend
 referring to the paper; I will try to fill in gaps of the proof, but must leave
-out details for brevity.
+out some details for brevity.
 
 ## Background
 The authors in this paper establish optimal rates of convergence for estimating
