@@ -1,14 +1,16 @@
-Title: Discussion: Optimal Rates of Convergence for Covariance Matrix Estimation
+Title: Discussion: Optimal Rates of Convergence for Covariance Matrix Estimation, Part 1
 Date: 2017-01-26
 Category: Statistics
 Tags: math, stats, covariance, minimax, risk
-Slug: discuss-covmat-optimal-convergence
+Slug: discuss-covmat-optimal-convergence-pt1
 Summary: Discussion of paper on minimax estimation of covariance matrices.
 
 For the past couple of days, I have been reading [Optimal Rates of Convergence
-for Covariance Matrix Estimation](https://arxiv.org/abs/1010.3866).  In this
-post, we will discuss the results from the paper and walk through steps of the
-proofs.
+for Covariance Matrix Estimation](https://arxiv.org/abs/1010.3866).  To aid my
+digestion of this paper, I will be writing about it on this blog.  This post
+covers the authors' justification of **Theorem 2**.  I highly recommend
+referring to the paper; I will try to fill in gaps of the proof, but must leave
+out details for brevity.
 
 ## Background
 The authors in this paper establish optimal rates of convergence for estimating
@@ -41,7 +43,7 @@ where $\mathcal{P}_\alpha = \mathcal{P}_\alpha(M_0, M, \rho)$ is the set of all
 distributions of $X$ that satisfies both Equations \eqref{eq:parameter-space}
 and \eqref{eq:subgaussian}
 
-To estimate $\Sigma$ by tapering the maximum likelihood estimator:
+$\Sigma$ is then estimated by tapering the maximum likelihood estimator:
 \begin{equation}\label{eq:tapering-estimator}
 \hat\Sigma = \hat\Sigma_k = \left(w_{ij}\sigma^*_{ij}\right)_{p\times p}
 \end{equation}
@@ -176,7 +178,48 @@ I(N^{(m)} > x)\right]   \\
 C\right)^4} \sqrt{\mathbf{P}(N^{(m)} > x)}\right]
 \end{align*}
 
+We now bound the $\sqrt{\mathbf{P}(N^{(m)} > x)}$ term.  By setting
+$x=4\sqrt{\frac{\log{p}+m}{n\rho_1}}$, and recalling **Lemma 3**, we have:
+\begin{align*}
+\sqrt{\mathbf{P}(N^{(m)} > x)}
+&\leq \sqrt{2p5^m \exp\{-nx^2\rho_1\}}  \\
+&\leq \sqrt{2p5^m \exp\{-16\log p + -16m\}}  \\
+&\leq \sqrt{2p5^m \cdot p^{-16}\exp\{-16m\}}  \\
+\end{align*}
 
+I will update this post with why we are able to bound:
+$$
+\sqrt{\mathbf{E}\left(\Vert\breve\Sigma\Vert + C\right)^4} \leq p^2
+$$
 
+With all these piecse together, we may conclude:
+\begin{align*}
+\mathbf{E}\Vert \breve\Sigma - \mathbf{E}\breve\Sigma\Vert^2
+&\leq C\left[
+    \frac{\log p + m}{n} + p^2\cdot(p5^m)^\frac{1}{2}\cdot p^{-8}
+    \exp\{-8m\}
+    \right] \\
+&\leq C_1 \left(\frac{\log p + m}{n}\right)
+\end{align*}
+where $C$ is an evolving constant.
 
-(To be continued!)
+### Putting It All Together
+Having walked through the steps of bounding the bias:
+$$
+\mathbf{E}\Vert \breve\Sigma - \mathbf{E} \breve\Sigma\Vert^2
+\leq M^2 k^{-2\alpha} = Ck^{-2\alpha}
+$$
+
+and variance:
+$$
+\mathbf{E}\Vert \breve\Sigma - \mathbf{E}\breve\Sigma\Vert^2
+\leq C \left(\frac{\log p + m}{n}\right)
+$$
+for arbitrary $\Sigma$, we can put these terms together to establish the bound
+on the worse case risk of the tapering estimator (**Theorem 2**):
+\begin{equation}
+\sup_{\mathcal{P}_\alpha}\mathbf{E}\Vert \hat\Sigma_k - \Sigma\Vert^2 \leq C
+\frac{k+\log p}{n} + Ck^{-2\alpha}
+\end{equation}
+for $k = O(n), \log p = O(n)$ and some constant $C > 0$.
+
