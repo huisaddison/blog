@@ -56,7 +56,7 @@ b_{ij} = \mathbf{1} \{i = m \text{ and } m+1 \leq j\leq 2k, \text{ or }
             j = m \text{ and } m+1 \leq i \leq 2k\}
 $$
 
-Setting $k = n^\frac{1}{2\alpha + 1}$ and $a = k^{-\alpha-1)}$, we then define
+Setting $k = n^\frac{1}{2\alpha + 1}$ and $a = k^{-\alpha-1}$, we then define
 a collection of $2^k$ covariance matrices:
 $$
 \mathcal{F}_{11} = \left\{
