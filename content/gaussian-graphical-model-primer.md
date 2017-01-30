@@ -1,8 +1,9 @@
 Title: The Elegance of the Gaussian Graphical Model
-Date: 2017-01-31
+Date: 2017-01-30
+Modified: 2017-01-30
 Category: Statistics
 Tags: math, stats, graphical-models, gaussian
 Slug: elegance-gaussian-graphical-models
-Summary: Discussion of paper on minimax estimation of covariance matrices, continued.
+Summary: An overview of the beautiful gaussian graphical model.
 
 
