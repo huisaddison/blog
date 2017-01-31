@@ -66,7 +66,40 @@ $$
     \quad\theta = (\theta_m) \in \{0, 1\}^k
 \right\}
 $$
-where $0 < \tau < 2^{-\alpha - 1}M$.
+where $0 < \tau < 2^{-\alpha - 1}M$.  We can interpret this parameter 
+space intuitively.  First, we generate a set of $k$ matrices $B(m, k)$,
+$m \in [k]$, in which $B(m, k)$ is nonzero only on certain elements
+along row or column $m$.  Then, for each $\theta = \{0, 1\}^k$, we add
+a number of $\tau a$ perturbations to the identity matrix; where
+we add $\tau a B(m, k)$ if $\theta_m \neq 0$.  This gives us a set
+of $\Sigma(\theta)$ of size $2^k$.
+
+We now verify that $\mathcal{F}_{11} \subset \mathcal{F}(M, M_0)$.  Recall
+the definition:
+$$
+\mathcal{F}(M_0, M) = \left\{
+\Sigma: \max_j \sum_j \{|\sigma_{ij}|: |i-j| > k\} \leq M k^{-\alpha}
+\text{ for all } k, \text{and} \lambda_{\text{max}}(\Sigma)\leq M_0
+\right\}
+$$
+Let us consider the $\Sigma(\theta)$ where $\theta$ is a vector of 
+$k$ ones and $\tau = 2^{-\alpha - 1}M$.  Then
+$$
+\Sigma(\theta) = \mathbf{I}_{p\times p}
+    + M (k + 2)^{-\alpha -1}\sum_{m=1}^k B(m, k)
+$$
+We observe that $\sum_{m=1}^k B(m, k)$ is a matrix of ones on the
+off-diagonals up to row and column $2k \leq p$.  Therefore, the worst-case
+sum of entries more than $k$ away from the diagonal is:
+\begin{align*}
+    \frac{k}{2} M k^{-\alpha - 1} 2^{- \alpha - 1}
+    &=  M k^{-\alpha} 2^{- \alpha - 2}  \\
+    &\leq M k^{-\alpha}
+\end{align*}
+Without loss of generality the authors assume $M_0 > 1$ and $\rho > 1$; 
+otherwise we may replace $\II_{p\times p}$ with $\varepsilon \II_{
+p \times p}$ with $\varepsilon \in (0, \min\{M_0, \rho\})$.
+
 
 [//]: # (TODO: Intepret this intuitively.)
 
