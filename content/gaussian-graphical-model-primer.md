@@ -6,4 +6,3 @@ Tags: math, stats, graphical-models, gaussian
 Slug: elegance-gaussian-graphical-models
 Summary: An overview of the beautiful gaussian graphical model.
 
-
