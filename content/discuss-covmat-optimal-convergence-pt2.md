@@ -97,9 +97,8 @@ sum of entries more than $k$ away from the diagonal is:
     &\leq M k^{-\alpha}
 \end{align*}
 Without loss of generality the authors assume $M_0 > 1$ and $\rho > 1$; 
-otherwise we may replace $\II_{p\times p}$ with $\varepsilon \II_{
-p \times p}$ with $\varepsilon \in (0, \min\{M_0, \rho\})$.
-
+otherwise we may replace $\mathbf{I}_{p\times p}$ with $\varepsilon
+\mathbf{I}_{ p \times p}$ with $\varepsilon \in (0, \min\{M_0, \rho\})$.  
 
 [//]: # (TODO: Intepret this intuitively.)
 
