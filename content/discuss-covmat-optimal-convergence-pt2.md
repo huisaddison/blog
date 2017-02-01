@@ -177,12 +177,20 @@ multiple comparisons:
 
 [//]: # (Why are there only k comparisons?)
 
-1.  The first factor is the minimum cost of making a mistake per comparison.
-2.  The last factor is the lower bound for the total probability of making
+1.  The first factor is the minimum cost of making a mistake per comparison;
+    that is, it is a lower bound on the distance between the distance between
+    two parameters in the parameter space.
+2.  The last factor (total variation affinity) measures the overlap between
+    the two probability measures indexed by $\theta$ and $\theta'$;
+    intuitively, it gives a lower bound on the total probability of making
     type I and type II errors for each comparison.
 3.  $\frac{k}{2}$ is the expected number of mistakes made when
     $\mathbf{P}_\theta$ and $\mathbf{P}_{\theta'}$ are indistinguishable
-    from each other when $H(\theta, \theta') = 1$ (?)
+    from each other when $H(\theta, \theta') = 1$.
+
+Assouad's Lemma can be unpacked as an extension of Le Cam's Method, and will
+be discussed in an upcoming post, with guidance from [Yu's _Assoud, Fano,
+and Le Cam](https://www.stat.berkeley.edu/~binyu/ps/LeCam.pdf).
 
 Suppose we draw $\mathbf{X}_1, \dotsc, \mathbf{X}_n \stackrel{\text{iid}}{\sim}
 \mathcal{N}(0, \Sigma(\theta))$ with $\Sigma(\theta) \in \mathcal{F}_{11}$.  We
@@ -222,7 +230,6 @@ $$
 \inf_{\hat\Sigma}\sup_{\mathcal{F}_{11}}
 \mathbf{E} \norm{\hat\Sigma - \Sigma}^2 \geq cn^{-\frac{2\alpha}{2\alpha+1}}
 $$
-
 
 ## Lower Bound by Le Cam's Method
 
