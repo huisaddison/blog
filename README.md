@@ -13,3 +13,9 @@ Current workflow:
 [Personal theme.](https://github.com/huisaddison/blog-theme)
 
 ![http://huisaddison.com/blog](https://github.com/huisaddison/blog-theme/blob/master/doc/img/blog.png)
+
+Possible upcoming topics:
+
+1. RKHS
+2. Assouad's Lemma
+3. Gaussian Graphical Models
