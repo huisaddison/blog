@@ -5,6 +5,9 @@ Category: Statistics
 Tags: math, stats, covariance, minimax, risk
 Slug: discuss-covmat-optimal-convergence-pt2
 Summary: Discussion of paper on minimax estimation of covariance matrices, continued.
+$$
+    \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+$$
 
 In this post, I will continue my discussion of [Optimal Rates of Convergence
 for Covariance Matrix Estimation](https://arxiv.org/abs/1010.3866).  A
@@ -116,7 +119,112 @@ matrices, the bandability condition is satisfied trivially, and because the
 greatest diagonal entry is $1 + \sqrt{\frac{\tau}{n}}$, the condition that
 the spectral norm be less than $M_0$ is easily verified.
 
-[//]: # (TODO: Intepret this intuitively.)
+Denote $\mathcal{F}_1 = \mathcal{F}_{11} \cup \mathcal{F}_{12}$.  Observe
+that $\mathcal{F}_1 \subset \mathcal{F}_\alpha(M_0, M)$
+
+We will now prove that:
+$$
+\inf_{\hat\Sigma}\sup_{\mathcal{F}_{11}}
+\mathbf{E} \norm{\hat\Sigma - \Sigma}^2 \geq cn^{-\frac{2\alpha}{2\alpha+1}}
+$$
+and
+$$
+\inf_{\hat\Sigma}\sup_{\mathcal{F}_{12}}
+\mathbf{E} \norm{\hat\Sigma - \Sigma}^2 \geq c\frac{\log p}{n}
+$$
+for some constant $c > 0$.  Taken together, we have:
+$$
+\inf_{\hat\Sigma}\sup_{\mathcal{F}_1}
+\mathbf{E} \norm{\hat\Sigma - \Sigma}^2
+\geq \frac{c}{2}\left(n^{-\frac{2\alpha}{2\alpha+1}} + \frac{\log p}{n}\right)
+$$
+which proves **Theorem 3**.
+
+## Lower Bound by Assouad's Lemma
+Now that we have our machinery set up, we can move on the meat of our proof.
+The goal of this section is to establish:
+
+$$
+\inf_{\hat\Sigma}\sup_{\mathcal{F}_{11}}
+\mathbf{E} \norm{\hat\Sigma - \Sigma}^2 \geq cn^{-\frac{2\alpha}{2\alpha+1}}
+$$
+
+Suppose we are estimating an arbitrary quantity $\psi(\theta)$ within a
+metric space with metric $d$, over a set of parameters $\Theta = \{0, 1\}^k$.
+We denote the Hamming distance on $\{0, 1\}^k$ by $H(\theta, \theta') = \sum_{i
+= 1}^k |\theta_i - \theta_i'|$.  We also define the total variation affinity
+between two probability measures $P$ and $Q$ with densities $p, q$ with respect
+to measure $\mu$ by $\norm{P \wedge Q} = \int \min\{p, q\} d\mu$.  Under these
+assumptions, Assoud's Lemma gives the following lower bound on the maximum risk
+of estimating $\psi(\theta)$:
+
+**Lemma (Assouad).**  _Let $\Theta = \{0, 1\}^k$ and let $T$ be an estimator
+based on an observation from a distribution in the collection $\{P_\theta,
+\theta \in \Theta\}$.  Then for all $s > 0$:_
+$$
+\max_{\theta\in\Theta} 2^s \mathbf{E}_\theta d^s(T, \psi(\theta))
+\geq \min_{H(\theta, \theta') \geq 1}
+\frac{
+    d^s(\psi(\theta), \psi(\theta'))
+}{
+    H(\theta, \theta')
+}\cdot\frac{k}{2}\cdot
+\min_{H(\theta, \theta')}\norm{\mathbf{P}_\theta \wedge\mathbf{P}_{\theta'}}
+$$
+
+The authors give a natural interpretation of Assouad's Lemma in terms of
+multiple comparisons:
+
+[//]: # (Why are there only k comparisons?)
+
+1.  The first factor is the minimum cost of making a mistake per comparison.
+2.  The last factor is the lower bound for the total probability of making
+    type I and type II errors for each comparison.
+3.  $\frac{k}{2}$ is the expected number of mistakes made when
+    $\mathbf{P}_\theta$ and $\mathbf{P}_{\theta'}$ are indistinguishable
+    from each other when $H(\theta, \theta') = 1$ (?)
+
+Suppose we draw $\mathbf{X}_1, \dotsc, \mathbf{X}_n \stackrel{\text{iid}}{\sim}
+\mathcal{N}(0, \Sigma(\theta))$ with $\Sigma(\theta) \in \mathcal{F}_{11}$.  We
+denote the joint distribution for these random vectors by $\mathbf{P}_\theta$.
+The authors give two lemmas to complete the proof:
+
+**Lemma 5.**  _Let $\Sigma(\theta)\in\mathcal{F}_{11}$.  Then for some constant
+$c > 0$:_
+$$
+    \min_{H(\theta, \theta') \geq 1}
+    \frac{
+    \norm{\Sigma(\theta) - \Sigma(\theta')}^2
+    }{
+    H(\theta, \theta')
+    } \geq cka^2
+$$
+
+**Lemma 6.**  _Suppose we draw $\mathbf{X}_1, \dotsc, \mathbf{X}_n
+\stackrel{\text{iid}}{\sim} \mathcal{N}(0, \Sigma(\theta))$ with
+$\Sigma(\theta) \in \mathcal{F}_{11}$.  Denote the joint distribution
+by $\mathbf{P}_\theta$.  Then for some constant $c > 0$:_
+$$
+    \min_{H(\theta, \theta') = 1}
+    \norm{\mathbf{P}_\theta \wedge \mathbf{P}_{\theta'}} > c
+$$
+By Lemmata 5 and 6, and taking $k = n^\frac{1}{2\alpha+1}$, we have the
+desired bound:
+$$
+\sup_{\mathcal{F}_{11}}
+\mathbf{E} \norm{\hat\Sigma - \Sigma}^2
+\geq \frac{c^2}{2}k^2a^2
+\geq c_1n^{-\frac{2\alpha}{2\alpha+1}}
+$$
+for some $c_1 > 0$.  As the bound is for an arbitrary $\hat\Sigma$, it
+follows that:
+$$
+\inf_{\hat\Sigma}\sup_{\mathcal{F}_{11}}
+\mathbf{E} \norm{\hat\Sigma - \Sigma}^2 \geq cn^{-\frac{2\alpha}{2\alpha+1}}
+$$
+
+
+## Lower Bound by Le Cam's Method
 
 To be continued!
 
