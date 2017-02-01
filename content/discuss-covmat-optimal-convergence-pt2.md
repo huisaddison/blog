@@ -190,7 +190,7 @@ multiple comparisons:
 
 Assouad's Lemma can be unpacked as an extension of Le Cam's Method, and will
 be discussed in an upcoming post, with guidance from [Yu's _Assoud, Fano,
-and Le Cam](https://www.stat.berkeley.edu/~binyu/ps/LeCam.pdf).
+and Le Cam_](https://www.stat.berkeley.edu/~binyu/ps/LeCam.pdf).
 
 Suppose we draw $\mathbf{X}_1, \dotsc, \mathbf{X}_n \stackrel{\text{iid}}{\sim}
 \mathcal{N}(0, \Sigma(\theta))$ with $\Sigma(\theta) \in \mathcal{F}_{11}$.  We
