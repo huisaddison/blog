@@ -1,6 +1,6 @@
 Title: Discussion: Optimal Rates of Convergence for Covariance Matrix Estimation, Part 2
 Date: 2017-01-30
-Modified: 2017-01-30
+Modified: 2017-01-31
 Category: Statistics
 Tags: math, stats, covariance, minimax, risk
 Slug: discuss-covmat-optimal-convergence-pt2
@@ -98,7 +98,23 @@ sum of entries more than $k$ away from the diagonal is:
 \end{align*}
 Without loss of generality the authors assume $M_0 > 1$ and $\rho > 1$; 
 otherwise we may replace $\mathbf{I}_{p\times p}$ with $\varepsilon
-\mathbf{I}_{ p \times p}$ with $\varepsilon \in (0, \min\{M_0, \rho\})$.  
+\mathbf{I}_{ p \times p}$ with $\varepsilon \in (0, \min\{M_0, \rho\})$.  It
+follows that $\mathcal{F_{11}} \subset \mathcal{F}(M, M_0)$.
+
+We now construct a second parameter space $\mathcal{F}_{12} \subset
+\mathcal{F}$ as follows:
+$$
+\mathcal{F}_{12} = \left\{
+\Sigma_m: \Sigma_m \mathbf{I}_{p\times p} + \left(
+\sqrt{\frac{\tau}{n}}\mathbf{1}\{i = j = m\}\right)_{p \times p},
+0 \leq m \leq p_1
+\right\}
+$$
+where $p_1 = \min\{p, e^\frac{n}{2}\}$ and $0 < \tau < \min\{(M_0 - 1)^2,
+(\rho - 1)^2, 1\}$.  Because the $\Sigma_m$ is this parameter are diagonal
+matrices, the bandability condition is satisfied trivially, and because the
+greatest diagonal entry is $1 + \sqrt{\frac{\tau}{n}}$, the condition that
+the spectral norm be less than $M_0$ is easily verified.
 
 [//]: # (TODO: Intepret this intuitively.)
 
