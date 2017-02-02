@@ -1,0 +1,132 @@
+Title: Assouad's Lemma
+Date: 2017-02-01
+Modified: 2017-02-01
+Category: Statistics
+Tags: math, stats, minimax, risk, assouad
+Slug: assouads-lemma
+Summary: A brief discussion of Assouad's Lemma, its uses, and its relationship to Le Cam's Method.
+$$
+    \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+    \newcommand{\EE}{\mathbf{E}}
+$$
+Assouad's Lemma is a common tool for proving lower bounds on the maximum risk
+associated with an estimation problem, and its core it may be interpreted as
+a multiple comparisons version of Le Cam's Method.  This post will first
+review the version discussed by Bin Yu in her chapter of [Festschrift
+for Lucien Le Cam](http://www.springer.com/us/book/9780387949529).  After that,
+we will discuss a variation found in Aad van der Vaart's [Asymptotic
+Statistics](
+https://books.google.com/books/about/Asymptotic_Statistics.html?id=UEuQEM5RjWgC
+).
+
+## Assouad à la Bin Yu
+### Preliminaries
+
+*   Assume that $\mathcal{P}$ is a family of probability measures and $\theta(P)$
+    is the parameter of interest with values in the pseudo-metric space
+    $(\mathcal{D}, d)$.
+*   Let $\hat\theta = \hat\theta(X)$ be an estimator based on an $X$ drawn
+    from a distribution $P$.
+
+### Statement
+Bin Yu gives the following statement of Assouad's Lemma in Chapter 23:
+
+**Lemma 2 (Assouad's Lemma)**  _Let $m\geq 1$ be an integer and let
+$\mathcal{F}_m = \{P_\tau: \tau \in \{-1, +1\}^m\}$ contain $2^m$ probability
+measures.  Write $\tau \sim \tau'$ if $\tau$ and $\tau'$ differ in only one
+coordinate, and write $\tau \sim_j \tau'$ when that coordinate is the jth.
+Suppose that there are $m$ pseudo-distances on $\mathcal{D}$ such that
+for any $x, y \in \mathcal{D}$
+$$
+    d(x, y) = \sum_{j=1}^m d_j(x, y)
+$$
+and further, that if $\tau\sim_j\tau'$,
+$$
+    d_j(\theta(P_\tau), \theta(P_{\tau'})) \geq \alpha_m
+$$
+Then_
+$$
+    \max_{P_\tau\in\mathcal{F}_m}
+    \mathbf{E}_\tau d(\hat\theta, \theta(P_\tau)) \geq
+    m\cdot \frac{\alpha_m}{2}\min\{\norm{P_\tau\wedge P_{\tau'}}:
+    \tau\sim\tau'\}
+$$
+
+### Proof
+We now discuss the proof provided.  For each tuple $\tau = 
+(\tau_1, \dotsc, \tau_m)$, let $\tau^j$ denote the $m$-tuple
+that differs only at the jth index.  Then $d(\theta(\tau),
+\theta(P_{\tau^j}))\geq \alpha_m$ by assumption.
+
+The key idea in this proof that we may bound the maximum risk over $\tau$
+from below by the average over the risk for each $\tau$, and then
+apply Le Cam's Method many times to get our desired bound.
+
+But first, we use the assumption that we may decouple our pseudo-distance
+metric across the members of $\tau$:
+\begin{align*}
+    \max_\tau \EE_\tau d(\theta(P_\tau), \hat\theta)
+        &=  \max_\tau\sum_{j=1}^m \EE_{\tau_j} d(\theta(P_\tau), \hat\theta)
+\end{align*}
+after which we use the average to lower bound and rearrange the summations:
+\begin{align*}
+    \max_\tau \EE_\tau d(\theta(P_\tau), \hat\theta)
+        &=  \max_\tau\sum_{j=1}^m \EE_{\tau_j} d(\theta(P_\tau), \hat\theta)\\
+        &\geq 2^{-m}\sum_\tau \sum_{j=1}^m
+            \EE_\tau d_j(\theta(P_\tau), \hat\theta)    \\
+        &= \sum_{j=1}^m2^{-m}\sum_\tau 
+            \EE_\tau d_j(\theta(P_\tau), \hat\theta)
+\end{align*}
+afterwards, Yu cleverly rearranges the terms so that each $\tau$ is matched
+up with a $\tau^j$ by strategically adding a copy of each term and then
+dividing through by a half:
+\begin{align*}
+    \sum_{j=1}^m2^{-m}&\sum_\tau 
+        \EE_\tau d_j(\theta(P_\tau), \hat\theta)    \\
+    &=  
+    \sum_{j=1}^m2^{-m}\sum_\tau 
+        \frac{1}{2}
+        \left(
+        \EE_\tau d_j(\theta(P_\tau), \hat\theta)    +
+        \EE_{\tau^j} d_j(\theta(P_{\tau^j}), \hat\theta)
+        \right)
+\end{align*}
+
+For each $\tau$ and $j$, consider the pair of associated hypotheses $P_\tau$
+and $P_{\tau^j}$.  By using Le Cam's Method, we may bound the average
+estimation error for each of these pairs from below:
+\begin{align*}
+    \max_\tau \EE_\tau d(\theta(P_\tau), \hat\theta)
+        &\geq \sum_{j=1}^m 2^{-m} \sum_\tau
+            \frac{\alpha_m}{2} \norm{P_\tau \wedge P_{\tau^j}}    \\
+        &\geq m
+            \frac{\alpha_m}{2}
+             \min\{\norm{P_\tau \wedge P_{\tau^j}}: \tau\sim\tau'\}
+\end{align*}
+giving our desired bound.
+
+## Assouad à la Aad van der Vaart
+The [paper](https://arxiv.org/abs/1010.3866) that I've been reading lately by
+Zhou et al uses a slightly different version of Assouad's Lemma, elaborated by
+van der Vaart in his book Asymptotic Statistics.  My post about lower bounds
+discussed in that paper (which takes advantage of Assouad's Lemma) may be found
+[here]({filename}discuss-covmat-optimal-convergence-pt2.md).
+
+### Statement
+Under construction.
+
+### Proof
+Under construction.
+
+## Discussion
+As previously observed, Assouad's Lemma may be decomposed into a set of
+two-point comparisons for which Le Cam's Method may be (and is) applied.
+So why bother with Assouad?
+
+By simultaneously considering, say, $m$ two-point comparisons, we are able to
+push up our lower bound by a factor of $m$, which can be convenient or
+necessary to establish the optimality of an estimator; it certainly doesn't
+hurt to have a tighter bound.  As Yu remarks in her note, "it is known that
+Assouad's Lemma (Lemma 2) gives very effective lower bounds for many global
+estimation problems."  It's delightful to see that Le Cam's Method can be found
+at the heart of such a useful tool.
