@@ -17,7 +17,7 @@ for Lucien Le Cam](http://www.springer.com/us/book/9780387949529).  After that,
 we will discuss a variation found in Aad van der Vaart's [Asymptotic
 Statistics](
 https://books.google.com/books/about/Asymptotic_Statistics.html?id=UEuQEM5RjWgC
-).
+).  We conclude with a brief discussion of its use.
 
 ## Assouad à la Bin Yu
 ### Preliminaries
