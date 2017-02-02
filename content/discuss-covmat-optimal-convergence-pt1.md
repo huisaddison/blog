@@ -1,5 +1,6 @@
 Title: Discussion: Optimal Rates of Convergence for Covariance Matrix Estimation, Part 1
 Date: 2017-01-26
+Modified: 2017-02-01
 Category: Statistics
 Tags: math, stats, covariance, minimax, risk
 Slug: discuss-covmat-optimal-convergence-pt1
@@ -164,17 +165,17 @@ $$
 \leq
 \Vert \breve\Sigma\Vert + \Vert\mathbf{E}\breve\Sigma\Vert
 $$
-and bound the operator norm by the Frobenius norm (needs to be shown):
+and bound the operator norm by the Frobenius norm:
 $$
 \Vert \breve\Sigma\Vert + \Vert\mathbf{E}\breve\Sigma\Vert
-\leq \Vert\breve\Sigma\Vert + C
+\leq \Vert\breve\Sigma\Vert_F + C
 $$
 Finally, we may apply Cauchy-Schwarz:
 \begin{align*}
 \mathbf{E}\Vert \breve\Sigma - \mathbf{E}\breve\Sigma\Vert^2
-&\leq C_1 \left[x^2 + \mathbf{E}\left(\Vert\breve\Sigma\Vert + C\right)
+&\leq C_1 \left[x^2 + \mathbf{E}\left(\Vert\breve\Sigma\Vert_F + C\right)
 I(N^{(m)} > x)\right]   \\
-&\leq C_1 \left[x^2 + \sqrt{\mathbf{E}\left(\Vert\breve\Sigma\Vert +
+&\leq C_1 \left[x^2 + \sqrt{\mathbf{E}\left(\Vert\breve\Sigma\Vert_F +
 C\right)^4} \sqrt{\mathbf{P}(N^{(m)} > x)}\right]
 \end{align*}
 
@@ -187,17 +188,22 @@ $x=4\sqrt{\frac{\log{p}+m}{n\rho_1}}$, and recalling **Lemma 3**, we have:
 &\leq \sqrt{2p5^m \cdot p^{-16}\exp\{-16m\}}  \\
 \end{align*}
 
-I will update this post with why we are able to bound:
+We are able to bound the Frobenius norm:
 $$
-\sqrt{\mathbf{E}\left(\Vert\breve\Sigma\Vert + C\right)^4} \leq p^2
+\sqrt{\mathbf{E}\left(\Vert\breve\Sigma\Vert_F + C\right)^4} \leq p^2
 $$
+by observing that the squared Frobenius norm decouples the entries of the
+matrix, and we are able to bound each of the $p^2$ entries by a constant,
+which hides among the other constants.
 
-With all these piecse together, we may conclude:
+With all these pieces together, we may conclude:
 \begin{align*}
 \mathbf{E}\Vert \breve\Sigma - \mathbf{E}\breve\Sigma\Vert^2
 &\leq C\left[
-    \frac{\log p + m}{n} + p^2\cdot(p5^m)^\frac{1}{2}\cdot p^{-8}
-    \exp\{-8m\}
+    \frac{\log p + m}{n} + \underbrace{
+        p^2\cdot(p5^m)^\frac{1}{2}\cdot p^{-8}
+        \exp\{-8m\}
+    }_\text{Lower Order Term}
     \right] \\
 &\leq C_1 \left(\frac{\log p + m}{n}\right)
 \end{align*}
