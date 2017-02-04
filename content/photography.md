@@ -13,12 +13,14 @@ thinking about different factors that affect an image; e.g., latent light,
 depth of field, exposure times.  And the cost of each photograph has taught
 me to be more deliberate about what to attempt capturing.
 
-After having the film developed at a mom and pop shop down the street from my
-parents' house, I scanned it at the Yale [Digital Media Center for the Arts](
-http://dmca.yalecollege.yale.edu/), which graciously makes available a
-Hasselblad film scanner.  The film scanner costs upwards of ten thousand
-dollars (!), according to B&H Photo and Video.  I uploaded a subset of the
-scans (jpeg-compressed) to Flickr.
+After having the film developed at a [mom and pop shop](
+https://www.yelp.com/biz/advanced-photo-and-studio-monterey-park) down the
+street from my parents' house, I digitized the photographs with a Hasselblad
+film scanner graciously made available by the Yale [Digital Media Center
+for the Arts]( http://dmca.yalecollege.yale.edu/).  The film scanner costs
+upwards of ten thousand dollars (!), according to B&H Photo and Video.  I
+uploaded a subset of the scans (jpeg-compressed) to [Flickr](
+https://www.flickr.com/photos/huisaddison/).
 
 So far the results look pretty good.  This being my first time, I didn't handle
 the negatives very well, and there are more than a few artifacts on the
