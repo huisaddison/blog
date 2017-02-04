@@ -196,11 +196,12 @@ Let's focus on the expectation term and bound the maximum by the average.
     \sum_{j=1}^r
     \sum_{\theta: \theta_j \in\{0, 1\}}
     \frac{1}{2}
-    \left(
+    \Bigg(
     \int (1 - S_j) \min\{p_{\theta:\theta_j = 0},
-        p_{\theta: \theta_j = 1}\}\;d\mu   +
+        p_{\theta: \theta_j = 1}\}\;d\mu                    \\
+    &\qquad\qquad\qquad\qquad\qquad+
     \int S_j \min\{p_{\theta:\theta_j = 0},
-        p_{\theta: \theta_j = 1}\}\;d\mu \right) \\
+        p_{\theta: \theta_j = 1}\}\;d\mu \Bigg) \\
 &=     
     \frac{1}{2}
     \sum_{j=1}^r
