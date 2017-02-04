@@ -188,9 +188,12 @@ multiple comparisons:
     $\mathbf{P}_\theta$ and $\mathbf{P}_{\theta'}$ are indistinguishable
     from each other when $H(\theta, \theta') = 1$.
 
-Assouad's Lemma can be unpacked as an extension of Le Cam's Method, and will
-be discussed in an upcoming post, with guidance from [Yu's _Assoud, Fano,
-and Le Cam_](https://www.stat.berkeley.edu/~binyu/ps/LeCam.pdf).
+Assouad's Lemma can be unpacked as an extension of Le Cam's Method.  A
+companion blog post discussing Assouad's Lemma with guidance from [Yu's
+_Assoud, Fano, and Le Cam_](https://www.stat.berkeley.edu/~binyu/ps/LeCam.pdf)
+and [van der Vaart's _Asymptotic Statistics_](
+https://books.google.com/books/about/Asymptotic_Statistics.html?id=UEuQEM5RjWgC
+) can be found [here]({filename}assouads-lemma.md).
 
 Suppose we draw $\mathbf{X}_1, \dotsc, \mathbf{X}_n \stackrel{\text{iid}}{\sim}
 \mathcal{N}(0, \Sigma(\theta))$ with $\Sigma(\theta) \in \mathcal{F}_{11}$.  We
