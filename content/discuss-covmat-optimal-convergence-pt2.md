@@ -1,6 +1,6 @@
 Title: Discussion: Optimal Rates of Convergence for Covariance Matrix Estimation, Part 2
-Date: 2017-01-30
-Modified: 2017-01-31
+Date: 2017-02-04
+Modified: 2017-02-04
 Category: Statistics
 Tags: math, stats, covariance, minimax, risk
 Slug: discuss-covmat-optimal-convergence-pt2
@@ -235,6 +235,288 @@ $$
 $$
 
 ## Lower Bound by Le Cam's Method
+We now establish a lower bound on the second subparameter space
+$\mathcal{F}_{12}$.
 
-To be continued!
+We first begin with a statement of Le Cam's method.  Suppose $X$
+is drawn from a distribution belonging to the collection $\{
+P_\theta: \theta \in \Theta\}$ where $\Theta = \{\theta_0, \dotsc,
+\theta_{p_1}$.  We further define $r(\theta_0, \theta_m) = \inf_t
+[L(t, \theta_0) + L(t, \theta_m)]$, and $r_\mathrm{min}(\theta_0,
+\theta_m)$.  Finally, we denote $\mathbf{\bar P} = \frac{1}{p_1}
+\sum_{m=1}^{p_1}\mathbf{P}_{\theta_m}$.
+
+**Lemma 7.** _Let $T$ be an estimator of $\theta$ based on an
+observation from a distribution in the collection $\{\mathbf{P}_\theta:
+\theta \in \Theta\}$, then_
+$$
+\sup_\theta \mathbf{E} L(T, \theta) \geq
+    \frac{1}{2}r_\mathrm{min}\norm{\mathbf{P}_{\theta_0}\wedge 
+    \mathbf{\bar P}}
+$$
+
+Justification for this lemma will be addressed in an upcoming blog post
+focusing exclusively on Le Cam's two-point method, with guidance from
+Bin Yu's excellent Chapter 23 in [_Festschrift for Le Cam_](
+https://books.google.com/books?id=JsAofN8GBVgC&source=gbs_ViewAPI).
+
+To apply Le Cam's method, the authors construct a parameter set as follows:
+for $1 \leq m \leq p_1$, let $\Sigma_m$ be a diagonal covariance matrix with
+$\sigma_{mm} = 1 + \sqrt{\tau\frac{\log p_1}{n}}$, $\sigma_{ii} = 1$ for
+$i \neq m$, and let $\Sigma_0$ be the identity matrix.
+
+Suppose for each $m$ we draw $X_1, \dotsc, X_n \stackrel{\mathrm{iid}}{\sim}
+\mathcal{N}(0, \Sigma_m)$.  Then the joint density $f_m$ of $X_1, \dotsc,
+X_n$ is given by:
+$$
+f_m =
+    \prod_{1\leq i\leq n, 1\leq j\leq p, j \neq m}
+        \phi_1(x_j^i)
+    \prod_{1 \leq i \leq n}
+        \phi_{\sigma_{mm}}(x_m^i)
+$$
+where $\phi_\sigma$ is the normal density with mean zero and variance $\sigma$.
+We can see that the statement of the joint density follows naturally from the
+fact that each random vector is drawn independently from a normal density with
+diagonal covariance matrix (no correlation implies independence in the Gaussian
+case).
+
+First, we establish the bound on $\norm{\mathbf{P}_{\theta_0} \wedge
+\mathbf{\bar P}}$.  Note that for two arbitrary densities $q_0, q_1$, we may
+rewrite the total variation affinity as one minus the total variation distance:
+$$
+\int q_0 \wedge q_1 d\mu =  1 - \frac{1}{2}\int |q_0-q_1|d\mu
+$$
+Then, we may apply Jensen's inequality on the latter term squared:
+\begin{align}
+\left[\int|q_0 - q_1|d\mu\right]^2
+    &\leq   \int (q_0 - q_1)^2 d\mu         \\
+    &\stackrel{?}{\leq} \int \frac{(q_0-q_1)^2}{q_1}d\mu        \\
+    &= \int \frac{q_0^2-2q_0q_1+q_1^2}{q_1}d\mu        \\
+    &= \int \frac{q_0^2}{q_1} - 2q_0 + q_1d\mu        \\
+    &= \int \frac{q_0^2}{q_1}d\mu - 1   
+\end{align}
+I will update this post when I figure out why the upper bound in line (2)
+holds.  Therefore, to establish a bound on the total variation affinity:
+$$
+\norm{\mathbf{P}_{\theta_0} \wedge \mathbf{\bar P}}
+\leq  1 - \frac{1}{2}\left(\int \frac{(\frac{1}{p_1}\sum f_m)^2}{f_0}d\mu - 1
+\right)^\frac{1}{2}\leq c
+$$
+we need only show that $\int \frac{(\frac{1}{p_1}\sum f_m)^2}
+{f_0}d\mu - 1\rightarrow 0$.  Let's open up this term and see what we find.
+
+\begin{align*}
+\int \frac{(\frac{1}{p_1}\sum f_m)^2} {f_0}d\mu - 1
+    &=  \int \frac{(\frac{1}{p_1}\sum f_m)^2} {f_0}d\mu - 1 \\
+    &=  \frac{1}{p_1^2} \int \frac{
+            \sum_{m=1}^{p_1} f_m^2 + \sum_{m\neq j} f_m f_j
+        } {f_0}d\mu - 1
+\end{align*}
+
+Let's focus on the cross terms first.  We can directly evaluate, for all
+$j, m$:
+\begin{align*}
+\int \frac{f_jf_m}{f_0} d\mu
+&=  \int
+    \frac{
+        \prod_{1\leq i \leq n\\1 \leq k \leq p_1\\k\neq j}
+        \phi_1(x_k^i)
+        \prod_{1\leq i \leq n\\1 \leq k \leq p_1\\k\neq m}
+        \phi_1(x_k^i)
+        \prod_{1 \leq i \leq n}
+        \phi(x_m^i)\phi(x_j^i)
+    }{
+        \prod_{1 \leq i \leq n\\1\leq k \leq p_1} \phi_1(x_k^i)
+    }d\left\{x_k^i\right\}_{1 \leq i \leq n\\1\leq k \leq p_1}\\    
+&\text{(Independence.)} \\
+&=  \prod_{1\leq i \leq n}\int
+    \frac{
+        \left[\prod_{1 \leq k \leq p_1\\k\neq j}
+        \phi_1(x_k^i)\right]
+        \left[\prod_{1 \leq k \leq p_1\\k\neq m}
+        \phi_1(x_k^i)\right]
+        \phi(x_m^i)\phi(x_j^i)
+    }{
+        \prod_{1\leq k \leq p_1} \phi_1(x_k^i)
+    }d\left\{x_k^i\right\}_{1\leq k \leq p_1}   \\
+&=  \prod_{1\leq i\neq n}\int
+    \left[\prod_{1 \leq k \leq p_1\\k \not\in\{j, m\}}
+    \phi_1(x_k^i)\right]
+    \phi(x_m^i)\phi(x_j^i)
+    d\left\{x_k^i\right\}_{1\leq k \leq p_1}    \\
+&\text{(Independence.)} \\
+&=  \prod_{1\leq i\neq n}
+    \left[
+    \left[
+    \prod_{1 \leq k \leq p_1\\k \not\in\{j, m\}}
+    \int
+    \phi_1(x_k^i)d x_k^i
+    \right]
+    \int\phi(x_m^i)d x_m^i
+    \int\phi(x_j^i)d x_j^i
+    \right] \\
+&=  \prod_{1\leq i\neq n}
+    1   \\
+&=  1
+\end{align*}
+
+Now, we'll look at the squared terms.  We have:
+\begin{align*}
+\int \frac{f_m^2}{f_0} d\mu
+&=  \int
+    \frac{
+        \prod_{1\leq i \leq n\\1 \leq j \leq p_1\\j\neq m}
+        \phi_1(x_j^i)^2
+        \prod_{1 \leq i \leq n}
+        \phi(x_m^i)^2
+    }{
+        \prod_{1 \leq i \leq n\\1\leq j \leq p_1} \phi_1(x_j^i)
+    }d\left\{x_j^i\right\}_{1 \leq i \leq n\\1\leq j \leq p_1}\\    
+&\text{(Independence.)} \\
+&=  \prod_{1\leq i \leq n}\int
+    \frac{
+        \left[\prod_{1 \leq j \leq p_1\\j\neq m}
+        \phi_1(x_j^i)^2\right]
+        \phi(x_m^i)^2
+    }{
+        \prod_{1\leq j \leq p_1} \phi_1(x_j^i)
+    }d\left\{x_j^i\right\}_{1\leq j \leq p_1}   \\
+&=  \prod_{1\leq i \leq n}\int
+    \frac{
+        \left[\prod_{1 \leq j \leq p_1\\j\neq m}
+        \phi_1(x_j^i)\right]
+        \phi(x_m^i)^2
+    }{
+        \phi_1(x_m^i)
+    }d\left\{x_j^i\right\}_{1\leq j \leq p_1}   \\
+&=  \prod_{1\leq i \leq n}
+    \left[
+    \prod_{1 \leq j \leq p_1\\j\neq m}
+    \int
+    \phi_1(x_j^i)dx_j^i
+    \right]
+    \int
+    \frac{
+        \phi(x_m^i)^2
+    }{
+        \phi_1(x_m^i)
+    }dx_m^i   \\
+&=  \prod_{1\leq i \leq n}
+    \int
+    \frac{
+        \phi_{\sigma_{mm}}(x_m^i)^2
+    }{
+        \phi_1(x_m^i)
+    }dx_m^i   \\
+\end{align*}
+We now substitute in the form of the density functions and move the
+normalization terms out of the integral:
+\begin{align*}
+\prod_{1\leq i \leq n}
+    \int
+    \frac{
+        \phi_{\sigma_{mm}}(x_m^i)^2
+    }{
+        \phi_1(x_m^i)
+    }dx_m^i 
+&=  \frac{
+        (\sqrt{2\pi\sigma_{mm}})^{-2n}
+    }{
+        (\sqrt{2\pi})^{-n}
+    }
+    \prod_{1\leq i \leq n}
+    \int
+    \exp\left\{-2\cdot\frac{(x_m^i)^2}{2\sigma_{mm}}\right\}
+    \exp\left\{\frac{(x_m^i)^2}{2}\right\}\\
+&=  \frac{
+        (\sqrt{2\pi\sigma_{mm}})^{-2n}
+    }{
+        (\sqrt{2\pi})^{-n}
+    }
+    \prod_{1\leq i \leq n}
+    \int
+    \exp\left\{
+    -\frac{1}{2}\left[
+    \frac{(x_m^i)^2}{\frac{\sigma_{mm}}{2 - \sigma_{mm}}}
+    \right]
+    \right\}    \\
+&=  \frac{
+        (\sqrt{2\pi\sigma_{mm}})^{-2n}
+    }{
+        (\sqrt{2\pi})^{-n}
+    }
+    \left(
+    \frac{2\pi\sigma_{mm}}{2 - \sigma_{mm}}
+    \right)^\frac{n}{2} \\
+&=  (\sqrt{\sigma_{mm}})^{-2n}
+    \left(
+    \frac{\sigma_{mm}}{2 - \sigma_{mm}}
+    \right)^\frac{n}{2} \\
+&=  (\sqrt{\sigma_{mm}})^{-n}(\sqrt{2 - \sigma_{mm}})^{-n}  \\
+&=  \left[
+    2\sigma_{mm} - \sigma_{mm}^2
+    \right]^{-\frac{n}{2}}  \\
+&=  \left[
+    1 - (1 - \sigma_{mm})^2
+    \right]^{-\frac{n}{2}}  \\
+&=  \left( 1 - \tau\frac{\log p_1}{n}\right)^{-\frac{n}{2}}
+\end{align*}
+Let us take $0 < \tau < 1$.  Then we have:
+\begin{align*}
+\frac{1}{p_1^2}\sum_{m=1}^{p_1}
+\left(\frac{f_m^2}{f_0}d\mu - 1\right)
+    &\leq \frac{1}{p_1}\left(1 -
+        \tau\frac{\log p_1}{n}\right)^{-\frac{n}{2}}
+    -   \frac{1}{p_1}   \\
+    &=  \exp\left\{-\log p_1 - \frac{n}{2}\log\left(
+            1 - \tau\frac{\log p_1}{n}\right)\right\}
+        -\frac{1}{p_1}  \\
+    &\rightarrow 0
+\end{align*}
+where we exploit the fact that $\log(1-x)\geq -2x$ for $0 < x <
+\frac{1}{2}$.  Combined with the previously proved fact that:
+$$
+    \int \frac{f_mf_j}{f_0}d\mu -1 = 0
+$$
+We can conclude that:
+$$
+\frac{1}{p_1^2}\sum_{m=1}^{p_1}\int \frac{f_m^2}{f_0} d\mu
+    +
+\frac{1}{p_1^2}\sum_{m \neq j}\int \frac{f_mf_j}{f_0} d\mu
+\rightarrow 0
+$$
+allowing us to bound:
+$$
+\norm{\mathbf{P}_{\theta_0} - \mathbf{\bar P}} \geq c
+$$
+
+Finally, we give a bound on $r_\mathrm{min}$.  Let $\theta_m = \Sigma_m$ for
+$0 \leq m \leq p_1$, and let the loss function $L$ be the squared operator
+norm.  Then we see that:
+\begin{align*}
+r(\theta_0, \theta_m)
+    &=  r(\Sigma_0, \Sigma_m)       \\
+    &=  \inf_t \left[L(t, \Sigma_0) + L(t, \Sigma_m)\right]
+\end{align*}
+Observe that the operator norm in $\ell_2$ distance on a diagonal matrix is
+simply the largest element.  Then, we may minimize the above quantity with
+$t_{ii} = 1 + \frac{1}{2}\sqrt{\tau\frac{\log p_1}{n}}\mathbf{1}\{i = m\}$.  This
+gives us:
+\begin{align*}
+r(\theta_0, \theta_m)
+    &=  2\cdot \frac{1}{4}\tau\frac{\log p_1}{n}    \\
+    &=  \frac{1}{2}\tau\frac{\log p_1}{n}   
+\end{align*}
+for $1 \leq m \leq p_1$, implying that $r_\mathrm{min} =
+\frac{1}{2}\tau\frac{\log p_1}{n}$.  Substituting this result back into
+the lower bound given by Le Cam's Method, we have:
+\begin{align*}
+\sup_\theta \mathbf{E} L(T, \theta)
+    &\geq \frac{1}{2}r_\mathrm{min} \norm{\mathbf{P}_{\theta_0}
+    \wedge \mathbf{\bar P}} \\
+    &=  \frac{c}{4}\tau\frac{\log p_1}{n}       \\
+    &\leq  c\frac{\log p_1}{n}   
+\end{align*}
+where $p_1 = \max\{p, \exp\{\frac{n}{2}\}\}$.
 
