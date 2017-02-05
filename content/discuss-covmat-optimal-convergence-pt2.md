@@ -255,7 +255,8 @@ $$
     \mathbf{\bar P}}
 $$
 
-Justification for this lemma will be addressed in an upcoming blog post
+Justification for this lemma is addressed on another [blog post](
+{filename}lecams-method.md)
 focusing exclusively on Le Cam's two-point method, with guidance from
 Bin Yu's excellent Chapter 23 in [_Festschrift for Le Cam_](
 https://books.google.com/books?id=JsAofN8GBVgC&source=gbs_ViewAPI).
