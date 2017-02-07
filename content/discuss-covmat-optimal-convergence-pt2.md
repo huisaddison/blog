@@ -1,6 +1,6 @@
 Title: Discussion: Optimal Rates of Convergence for Covariance Matrix Estimation, Part 2
 Date: 2017-02-04
-Modified: 2017-02-04
+Modified: 2017-02-06
 Category: Statistics
 Tags: math, stats, covariance, minimax, risk
 Slug: discuss-covmat-optimal-convergence-pt2
@@ -175,8 +175,6 @@ $$
 The authors give a natural interpretation of Assouad's Lemma in terms of
 multiple comparisons:
 
-[//]: # (Why are there only k comparisons?)
-
 1.  The first factor is the minimum cost of making a mistake per comparison;
     that is, it is a lower bound on the distance between the distance between
     two parameters in the parameter space.
@@ -288,17 +286,21 @@ rewrite the total variation affinity as one minus the total variation distance:
 $$
 \int q_0 \wedge q_1 d\mu =  1 - \frac{1}{2}\int |q_0-q_1|d\mu
 $$
-Then, we may apply Jensen's inequality on the latter term squared:
+Then, we may free ourselves of the absolute value by writing the integral
+as though we are integrating with respect to $q_1$, and then apply
+Jensen's inequality:
 \begin{align}
 \left[\int|q_0 - q_1|d\mu\right]^2
-    &\leq   \int (q_0 - q_1)^2 d\mu         \\
-    &\stackrel{?}{\leq} \int \frac{(q_0-q_1)^2}{q_1}d\mu        \\
+    &=  \left[\int\left(\frac{|q_0 - q_1|}{q_1}\right)q_1d\mu\right]^2  \\
+    &\leq\int\left(\frac{|q_0 - q_1|}{q_1}\right)^2q_1d\mu  \\
     &= \int \frac{q_0^2-2q_0q_1+q_1^2}{q_1}d\mu        \\
     &= \int \frac{q_0^2}{q_1} - 2q_0 + q_1d\mu        \\
     &= \int \frac{q_0^2}{q_1}d\mu - 1   
 \end{align}
-I will update this post when I figure out why the upper bound in line (2)
-holds.  Therefore, to establish a bound on the total variation affinity:
+The $q_1^2$ in the denominator allows us to get rid of the $q_1$ outside
+the fraction that we treated as our measure of integration when applying
+Jensen's inequality in line (2).  This allows us to go on to establish a bound
+on the total variation affinity:
 $$
 \norm{\mathbf{P}_{\theta_0} \wedge \mathbf{\bar P}}
 \leq  1 - \frac{1}{2}\left(\int \frac{(\frac{1}{p_1}\sum f_m)^2}{f_0}d\mu - 1
