@@ -51,7 +51,7 @@ X_2 \sim \mathcal{N}(0, K_2)$ be independent.  Define $Y \triangleq X_1
 and we know covariance matrices in general are positive semidefinite.
 
 ## Discussion
-I'm particularly fond of this proof because elegantly connects two facts:
+I'm particularly fond of this proof because it elegantly connects two facts:
 
 *   Kernel functions evaluated on finite sets yield positive semidefinite
     matrices by definition.
