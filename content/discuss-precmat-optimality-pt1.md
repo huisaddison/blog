@@ -1,4 +1,4 @@
-Title: Discussion: Asymptotic Normality and Optimalities in Estimation of Large Gaussian Graphical Models
+Title: Discussion: Asymptotic Normality and Optimalities in Estimation of Large Gaussian Graphical Models, Part 1
 Date: 2017-02-09
 Modified: 2017-02-09
 Category: Statistics
@@ -18,8 +18,8 @@ Summary: Discussion of paper on asymptotic properties of an entrywise estimator 
 </div>
 
 ## Introduction
-As part of project I've been working on, I'm reading [Asymptotic Normality and
-Optimalities in Estimation of Large Gaussian Graphical Models](
+As part of the project I've been working on, I'm reading [Asymptotic Normality
+and Optimalities in Estimation of Large Gaussian Graphical Models](
 https://arxiv.org/abs/1309.6024), a paper by Ren, Sun, Zhang, and Zhou.
 
 The paper describes a technique for producing asymptotically efficient
