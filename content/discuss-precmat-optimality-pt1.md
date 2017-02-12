@@ -143,23 +143,8 @@ $$
     = \left(\Theta^{ora}_{A, A}\right)^{-1}
 $$
 
-But because $\beta$ is unknown, we must estimate $\beta$ and use its estimator
-to then estimate $\epsilon_A$.  The authors introduce a scaled lasso regression
-problem to do this.  For each $m \in A = \{i, j\}$, they perform the
-optimization: 
-$$
-\left\{\hat\beta_m, \hat\theta^{1/2}_{mm}\right\}
-=
-\arg\min_{b\in\RR^{p-2},\\\sigma \in \RR^+}
-\left\{
-\frac{\norm{\XX_m - \XX_{A^c}b}^2}{2n\sigma}
-+ \frac{\sigma}{2} 
-+ \lambda\sum_{k\in A^c}\frac{\norm{\XX_k}}{\sqrt{n}}|b_k|
-\right\}
-$$
-
-With these $\hat\beta$ estimates, we are able to define the residuals of the
-scaled lasso regression:
+Suppose we have an adequate estimates of the regression weights $\hat\beta$.
+Based on $\hat\beta$, we may derive estimates $\hat\epsilon$ of the residuals.
 $$
 \hat\epsilon_A = \XX_A - \XX_{A^c}\hat\beta
 $$
@@ -173,5 +158,39 @@ $$
 \hat\Omega_{A, A} = \hat\Theta_{A, A}^{-1}
 $$
 
+To calculate the estimates $\hat\beta$, the authors introduce a scaled lasso
+regression problem.  For each $m \in A = \{i, j\}$, they perform the
+optimization: 
+$$
+\left\{\hat\beta_m, \hat\theta^{1/2}_{mm}\right\}
+=
+\arg\min_{b\in\RR^{p-2},\\\sigma \in \RR^+}
+\left\{
+\frac{\norm{\XX_m - \XX_{A^c}b}^2}{2n\sigma}
++ \frac{\sigma}{2} 
++ \lambda\sum_{k\in A^c}\frac{\norm{\XX_k}}{\sqrt{n}}|b_k|
+\right\}
+$$
+Intuitively, the scaling factor on the $\ell_1$ penalty implicitly standardizes
+the design vector to length $\sqrt{n}$ such that the $\ell_1$ penalty is
+applied to the new coefficients $\frac{\norm{\XX_k}}{\sqrt n}b_k$.
+
+The authors also consider the following least squares estimator, based on
+the model $\hat S_{mm}$ selected by the scaled lasso estimation problem:
+$$
+\left\{\hat\beta_m, \hat\theta^{1/2}_{mm}\right\}
+=
+\arg\min_{b\in\RR^{p-2},\\\sigma \in \RR^+}
+\left\{
+    \frac{\norm{\XX_m - \XX_{A^c}b}^2}{2n\sigma}
+    + \frac{\sigma}{2} 
+    : \mathrm{supp}(b) \subseteq \hat S_{mm}
+\right\}
+$$
+Essentially, after determining the support of $b$ through the scaled lasso
+estimation problem, we can fit least squares entries for $\hat\beta_m$ only
+on the features in the support.
+
 In my upcoming posts about this paper, I will review the inference results and
 step through the associated proofs.
+

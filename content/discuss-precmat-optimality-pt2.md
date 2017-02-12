@@ -9,12 +9,14 @@ Summary: Discussion of paper on asymptotic properties of an entrywise estimator 
     $$
     \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
     \newcommand{\RR}{\mathbf{R}}
+    \newcommand{\DD}{\mathbf{D}}
     \newcommand{\PP}{\mathbf{P}}
     \newcommand{\EE}{\mathbf{E}}
     \newcommand{\XX}{\mathbf{X}}
     \newcommand{\Nn}{\mathcal{N}}
-    \{\Nn}{\mathcal{N}}
+    \newcommand{\Nn}{\mathcal{N}}
     \DeclareMathOperator{\var}{var}
+    \DeclareMathOperator{\diag}{diag}
     $$
 </div>
 
@@ -102,14 +104,65 @@ By coupling the actual estimator to the oracle MLE and then proving nice
 properties for the oracle MLE, we can work towards nice properties for
 the actual estimator.
 
+First, we state a few conditions, which will be useful in our analysis of
+**Theorem 2**.  When these conditions hold for certain fixed constant $C_0$,
+$\varepsilon_\Omega \rightarrow 0$, and all $\delta \geq 1$, the asymptotic
+normality and efficiency properties will hold, as we will see in the analysis
+of Theorem 2.
+
+The first condition is:
+\begin{align}
+\max_{A: A = \{i, j\}}
+\PP\left\{
+\norm{\XX_{A^c}\left(\hat\beta_{A^c, A} - \beta_{A^c, A}\right)}^2
+\geq C_0 s \delta\log p
+\right\}
+\leq p^{-\delta + 1}\varepsilon_\Omega
+\end{align}
+Observing that $\XX_{A^c}\left(\hat\beta_{A^c, A} - \beta_{A^c, A}\right)$
+is equivalent to $\norm{\epsilon_A - \hat\epsilon_A}^2$, we may interpret
+this as a concentration bound on the deviation of the residual estimates
+from the oracle residuals.
+
+The next condition is:
+\begin{align}
+\max_{A:A = \{i, j\}}
+\PP\left\{
+\norm{
+    \bar\DD^\frac{1}{2}_{A^c}
+    \left(\hat\beta_{A^c, A} - \beta_{A^c, A}\right)
+}_1 \geq C_0 s \sqrt{\delta\frac{\log p}{n}}
+\right\}
+\leq p^{-\delta+1}\varepsilon_\Omega
+\end{align}
+with $\bar \DD = \diag\left(\frac{\XX^\top\XX}{n}\right)$.  I'm not sure
+what this says beyond that the regression estimates will be close to the
+oracle estimators after rescaling by the standard deviations of the columns
+of the feature matrix.  I will update this post when I find out more.
+
+The final condition is, for $\theta_{ii}^{ora} = \frac{\norm{\XX_i
+- \XX{A^c}\beta_{A^c, i}}^2}{n}$,
+\begin{align}
+\max_{A: A = \{i, j\}}
+\PP\left\{
+\left|
+\frac{\hat\theta_{ii}}{\theta_{ii}^{ora}} - 1
+\right| \geq
+C_0 s \delta \frac{\log p}{n}
+\right\}
+\leq p^{-\delta + 1}\varepsilon_\Omega
+\end{align}
+with a certain complexity measure $s$ of the precision matrix $\Omega$,
+assuming the spectrum of $\Omega$ is bounded, and $n \geq \frac{(s\log
+p)^2}{c_0}$ for a sufficiently small $c_0 > 0$.  
+
 ## Statement
 **Theorem 2.** _Let $\hat\Theta_{A, A}$ and $\hat\Omega_{A, A}$ be estimators
-defined in (2) and (3) respectively, and $\lambda = (1 + \varepsilon)
-\sqrt\frac{2\delta\log p}{n}$ for any $\delta \geq 1$ and $\varepsilon > 0$
-in equation (1)._
+defined in (2) and (3) respectively.  Let $\delta \geq 1$.  Suppose $s \leq
+\frac{c_0n}{\log p}$ for a sufficiently small constant $c_0 > 0$._
 
-1.  _Suppose $s \leq \frac{c_0n}{\log p}$ for a sufficiently small constant
-    $c_0 > 0$.  We have
+1.  _Suppose that conditions (7), (8), (9) hold with $C_0$ and
+    $\varepsilon_\Omega$.  Then
     \begin{align}
     \max_{G^*(M, s, \lambda)}\max_{A:A=\{i, j\}}
     \PP\left\{
@@ -126,68 +179,37 @@ in equation (1)._
     \right\}\leq o\left(p^{-\delta + 1}\right)
     \end{align}
     where $\Theta^{ora}_{A, A}$ and $\Omega^{ora}_{A, A}$ are the oracle
-    estimators and $C_1$ and $C_1'$ are positive constants depending on
-    $\{\varepsilon, c_0, M\}$ only._
-2.  _There exist constants $D_1$ and $\vartheta \in (0, \infty)$, and three
-    marginally standard normal random variables $Z_{kl}$, where $kl = ii, ij,
-    jj$, such that whenever $|Z_{kl}| \leq \vartheta\sqrt{n}$ for all $kl$,
+    estimators and $C_1$ is a positive constant depending only on
+    $\{C_0, \max_{m\in A = \{i, j\}}\theta_{mm}\}$._
+2.  _Let $\lambda = (1 + \varepsilon)\sqrt{\frac{2\delta\log p}{n}}$ with
+    $\varepsilon > 0$ be the $\lambda$ parameter in the scaled lasso
+    estimation problem, and let $\hat\beta_{A^c, A}$ be the scaled lasso 
+    estimator, or the LSE after the scaled lasso selection.  Then (4),
+    (5), and (6), and thus (7) and (8) hold for all $\Omega \in
+    \mathcal{G}^*(M, s, \lambda)$ with a certain constant $C_0$ depending on
+    $\{\varepsilon, c_0, M\} only and_
+    \begin{align}
+    \max_{\Omega \in \mathcal{G}^*(M, s, \lambda)} \varepsilon_\Omega = o(1)
+    \end{align}
+3.  _There exist constants $D_1$ and $\vartheta \in (0, \infty)$, and four
+    marginally standard normal random variables $Z1, Z_{kl}$, where $kl = ii,
+    ij, jj$, such that whenever $|Z_{kl}| \leq \vartheta\sqrt{n}$ for all $kl$,
     we have
     \begin{align}
     \left|\kappa_{ij}^{ora} - Z'\right|
     \leq
     \frac{D_1}{\sqrt{n}}\left(1 + Z_{ii}^2 + Z_{ij}^2 + Z_{jj}^2\right)
     \end{align}
-    where $Z' \sim \Nn(0, 1)$, which can be defined as a linear combination
-    of $Z_{kl}$._
+    where $Z'$, which can be defined as a linear combination of $Z_{kl}$._
 
 Intuitively, statement (1) says that there is a very low probability that
 the maximum entrywise deviation of the actual estimator from the oracle MLE
-is larger than a constant that we can control.  Statement (2) says that
+is larger than a constant that we can control.  Statement (2) shows that
+the conditions are met such that statement (1) holds.  Statement (3) says that
 the rescaled oracle MLE behaves more or less asymptotically normally.
 
 [//]:   #(TODO: Talk to Harry to get more intuition about these statements, update.)
 
 ## Proof for Theorem 2.1
-First, we present the following lemma:
-
-**Lemma 2.** _Let $\lambda = (1 + \varepsilon)\sqrt\frac{2\delta\log p}{n}$ for
-any $\delta \geq 1$ and $\varepsilon > 0$.  Define the event $E_m$ as follows:
-\begin{align}
-\left|
-\hat\theta_{mm} - \theta^{ora}_{mm} \right|
-    &\leq   C_1'\lambda^2s  \\
-\norm{\beta_m - \hat\beta_m}_1
-    &\leq C_2'\lambda s   \\
-n^{-1}\norm{\XX_{A^c}\left(\beta_m - \hat\beta_m\right)}^2
-    &\leq C_3'\lambda^2 s   \\
-\norm{n^{-1}\XX_{A^c}^\top\epsilon_m}_\infty
-    &\leq C_4'\lambda
-\end{align}
-for $m \in \{i, j\}$ and some constants $C_k', 1 \leq k \leq 4$.  Under
-the assumptions of Theorem 2, we have:_
-$$
-\PP\left\{E_m^c\right\} \leq o\left(p^{-\delta + 1}\right)
-$$
-
-The proof of **Lemma 2** is deferred to a future post.
-
-[//]:   #(TODO: Read and understand the proof for Lemma 2.)
-
-
-First, we consider $\theta_{ii}^{ora}$ and $\theta_{jj}^{ora}$.  By the
-definition of $\lambda$ and Equation (7) of **Lemma 2**, the concentration
-bound on the deviations in (4) holds for $\theta_{ii}^{ora},
-\theta_{ij}^{ora}$.  We then consider the event $E_i \cap E_j$:
-
-\begin{align*}
-\left|\hat\theta_{ij} - \theta^{ora}_{ij}\right|
-&=  \left|
-    \frac{\hat\epsilon_i^\top\hat\epsilon_j}{n}
-    - 
-    \frac{\epsilon_i^\top\epsilon_j}{n}
-    \right|
-\end{align*}
-
-(To be continued!)
 
 ## Proof for Theorem 2.2
