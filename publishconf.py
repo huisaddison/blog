@@ -10,8 +10,12 @@ import sys
 sys.path.append(os.curdir)
 from pelicanconf import *
 
+HOMEURL = 'http://huisaddison.com'
+HOMENAME = 'huisaddison'
+
 SITEURL = 'http://huisaddison.com/blog'
 SITENAME = 'huisaddison/blog'
+
 
 RELATIVE_URLS = False
 

@@ -3,6 +3,10 @@
 from __future__ import unicode_literals
 
 AUTHOR = 'Addison'
+
+HOMEURL = ''
+HOMENAME = 'huisaddison'
+
 SITENAME = 'huisaddison/blog'
 SITEURL = ''
 
