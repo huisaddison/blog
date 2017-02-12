@@ -72,15 +72,16 @@ on the order $\sqrt\frac{\log p}{n}$ in this paper.
 Intuitively, this parameter space is a mix of the $\ell_0$ norm, which
 measures sparsity, and the $\ell_1$ norm, which is the sum of absolute
 values, imposed on each row.  For $\lambda$ very small, we recover the pure
-$\ell_0$ norm; this special case is **Theorem 1**.
+$\ell_0$ norm; this special case is the parameter space used in **Theorem 1**.
 
-Appealing the graphical model representation of the multivariate normal
-distribution with nonzero entries of the precision matrix giving the edges,
-we may observe that when $|\omega_{ij}|$ is zero or larger than $\lambda$, 
-$s_\lambda$ is equivalent to the maximum node degree of the graph (the
-degree of each node is equivalent to the number of nonzero entries on
-each row, or column).  Finally, we note that the spectrum (eigenvalues) of
-the matrix are bounded, a fact upon which the later analysis relies.
+Appealing to the graphical model representation of the multivariate normal
+distribution, in which a nonzero entry $\omega_{ij}$ in the precision matrix
+implies the existence of an edge between nodes $i$ and $j$, we may observe that
+when $|\omega_{ij}|$ is zero or larger than $\lambda$, $s_\lambda$ is
+equivalent to the maximum node degree of the graph (the degree of each node is
+equivalent to the number of nonzero entries on each row, or column).  Finally,
+we note that the spectrum (eigenvalues) of the matrix are bounded, a fact upon
+which the later analysis relies.
 
 The authors then prove a theorem that gives an error bound on the estimates.
 Their approach is to:
