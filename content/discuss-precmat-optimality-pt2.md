@@ -211,5 +211,55 @@ the rescaled oracle MLE behaves more or less asymptotically normally.
 [//]:   #(TODO: Talk to Harry to get more intuition about these statements, update.)
 
 ## Proof for Theorem 2.1
+### Part (i)
+The values of $\theta_{ii}, \theta_{jj}$ are uniformly bounded, which implies
+that the desired concentration bound  (7) follows from (4) for
+$\theta^{ora}_{ii}$ and $\theta^{ora}_{jj}$.  
+[//]:   #(TODO: Why?)
+
+Therefore, we only need to be concerned about bounding $\theta^{ora}_{ij}$.
+Recall that we define $\bar \DD = \diag\left(\frac{\XX^\top \XX}{n}\right)$ and
+that $\XX_{A^c}$ is independent of $\epsilon_A$.  First, we show the following.
+
+**Claim.**
+
+$$\left(\XX \bar \DD^{-\frac{1}{2}}\right)^\top_k
+\frac{\epsilon_m}{n}\sim \Nn\left(0, \frac{\theta_{mm}}{n}\right)$$
+
+_for all $m \in A$._
+
+_Proof._  First, we observe that $\XX\bar\DD^{-\frac{1}{2}}$ is essentially
+$\XX$ with its columns scaled to unit length in Euclidean norm.  The fact
+that the mean of the distribution is zero follows from the fact that the
+columns of $\XX$ are assumed to be centered.  To show the variance, we 
+observe that we may express
+
+\begin{align*}
+\var\left(\left(\XX \bar \DD^{-\frac{1}{2}}\right)^\top_k\epsilon_m\right)
+&=  \var\left(\sum_{i=1}^p \left(\XX\bar\DD^{-\frac{1}{2}}\right)_{ik}
+    \epsilon_{im}\right)    \\
+&=  \sum_{i=1}^p \left(\XX\bar\DD^{-\frac{1}{2}}\right)^2_{ik}
+    \var\left(\epsilon_{im}\right)    \\
+&=  \sum_{i=1}^p \left(\XX\bar\DD^{-\frac{1}{2}}\right)^2_{ik}
+    \var\left(\epsilon_{1m}\right)    &&\text{(Symmetry.)}  \\
+&=  \var\left(\epsilon_{1m}\right)  \\
+&=  \EE \left[\epsilon_{1m}^2\right] &&\text{(Errors centered at zero.)}    \\
+&=  n\theta_{mm}
+\end{align*}
+
+Dividing $\XX\bar\DD^{-1/2}$ by $n$ gives the desired
+variance.  <div align="right"> &#8718; </div>
+
+It then follows from the union bound that:
+$$
+\PP\left\{
+\norm{
+\left(\XX\bar\DD^{-1/2}\right)^\top_{A^c} \frac{\epsilon_m}{n}
+}_\infty > \sqrt{
+2\delta\theta_{mm}n^{-1}\log p
+}
+\right\}
+\leq \frac{p^{-\delta}(p-2)}{\sqrt{2\delta\log p}}
+$$
 
 ## Proof for Theorem 2.2
