@@ -14,9 +14,12 @@ Summary: Discussion of paper on asymptotic properties of an entrywise estimator 
     \newcommand{\EE}{\mathbf{E}}
     \newcommand{\XX}{\mathbf{X}}
     \newcommand{\Nn}{\mathcal{N}}
-    \newcommand{\Nn}{\mathcal{N}}
+    \newcommand{\Gg}{\mathcal{G}}
+    \newcommand{\la}{\langle}
+    \newcommand{\ra}{\rangle}
     \DeclareMathOperator{\var}{var}
     \DeclareMathOperator{\diag}{diag}
+    \DeclareMathOperator{\cov}{cov}
     $$
 </div>
 
@@ -189,7 +192,7 @@ defined in (2) and (3) respectively.  Let $\delta \geq 1$.  Suppose $s \leq
     estimator, or the LSE after the scaled lasso selection.  Then (4),
     (5), and (6), and thus (7) and (8) hold for all $\Omega \in
     \mathcal{G}^*(M, s, \lambda)$ with a certain constant $C_0$ depending on
-    $\{\varepsilon, c_0, M\} only and_
+    $\{\varepsilon, c_0, M\}$ only and_
     \begin{align}
     \max_{\Omega \in \mathcal{G}^*(M, s, \lambda)} \varepsilon_\Omega = o(1)
     \end{align}
@@ -212,8 +215,7 @@ the rescaled oracle MLE behaves more or less asymptotically normally.
 
 [//]:   #(TODO: Talk to Harry to get more intuition about these statements, update.)
 
-## Proof for Theorem 2.1
-### Part (i)
+## Proof for Theorem 2(i)
 The values of $\theta_{ii}, \theta_{jj}$ are uniformly bounded, which implies
 that the desired concentration bound  (7) follows from (4) for
 $\theta^{ora}_{ii}$ and $\theta^{ora}_{jj}$.  
@@ -314,25 +316,27 @@ we have:
         \epsilon_i^\top\epsilon_j
         \right| \\
     &=  \frac{1}{n}
-        \left|
+        \Bigg|
         \epsilon_i^\top \epsilon_j
         + \left(\beta_i - \hat\beta_i\right)^\top \XX_{A^c}^\top \epsilon_j
-        + \epsilon_i^\top \left(\beta_j - \hat\beta_j\right)\XX_{A^c}
+        + \epsilon_i^\top \left(\beta_j - \hat\beta_j\right)\XX_{A^c}   \\
+    &\qquad
         + \left(\beta_i - \hat\beta_i\right)^\top \XX_{A^c}^\top
             \XX_{A^c}\left(\beta_j - \hat\beta_j\right)
         -\epsilon_i^\top \epsilon_j
-        \right| \\
-    &\leq  \frac{1}{n}\left[
+        \Bigg| \\
+    &\leq  \frac{1}{n}\Bigg[
         \left|
         \left(\beta_i - \hat\beta_i\right)^\top \XX_{A^c}^\top \epsilon_j
         \right|
         + \left|
         \epsilon_i^\top \left(\beta_j - \hat\beta_j\right)\XX_{A^c}
-        \right|
+        \right| \\
+    &\qquad
         + \left|\left(\beta_i - \hat\beta_i\right)^\top \XX_{A^c}^\top
             \XX_{A^c}\left(\beta_j - \hat\beta_j\right)
-        \right|\right]  \\
-    &=  \frac{1}{n}\left[
+        \right|\Bigg]  \\
+    &=  \frac{1}{n}\Bigg[
         \left|
         \left(\beta_i - \hat\beta_i\right)^\top
         \bar\DD^{-1/2}\bar\DD^{1/2} \XX_{A^c}^\top \epsilon_j
@@ -340,11 +344,12 @@ we have:
         + \left|
         \epsilon_i^\top \left(\beta_j - \hat\beta_j\right)
         \bar\DD^{-1/2}\bar\DD^{1/2}\XX_{A^c}
-        \right|
+        \right| \\
+    &\qquad
         + \left|\left(\beta_i - \hat\beta_i\right)^\top \XX_{A^c}^\top
             \XX_{A^c}\left(\beta_j - \hat\beta_j\right)
-        \right|\right]\\
-    &\leq \frac{1}{n}\left[
+        \right|\Bigg]\\
+    &\leq \frac{1}{n}\Bigg[
         \norm{
             \left(\XX\bar\DD^{-1/2}\right)_{A^c}^\top\epsilon_i
         }_\infty\norm{
@@ -355,14 +360,15 @@ we have:
             \left(\XX\bar\DD^{-1/2}\right)_{A^c}^\top\epsilon_j
         }_\infty\norm{
             \bar\DD^{1/2}\left(\beta_i - \hat\beta_i\right)
-        }_1
+        }_1 \\
+    &\qquad
         +
         \norm{
         \XX_{A^c}\left(\beta_i - \hat\beta_i\right)
         }\cdot\norm{
         \XX_{A^c}\left(\beta_j - \hat\beta_j\right)
         }
-    \right] \\
+    \Bigg] \\
     &\leq 2\sqrt{2\delta\theta_{mm}n^{-1}\log p}C_0
             s\sqrt{\delta \frac{\log p}{n}}
             + \frac{C_0s\delta\log p}{n}\\
@@ -375,6 +381,63 @@ with probability at least $1 - 2p^{-\delta + 1}\epsilon_\Omega
 
 [//]:   #(TODO: Why?  How do we get the other terms in the bound in prob?)
 
-Given that the spectrum of $\Theta_{A, A}$ is bounded, 
+Given that the spectrum of $\Theta_{A, A}$ is bounded, the functional
+$\zeta_{kl}(\Theta_{A, A}) = \left(\Theta_{A, A}^{-1}\right)_{kl}$ is Lipschitz
+in a neighborhood of $\Theta_{A, A}$ for $k, l \in A$, and thus the bound
+on distances between the precision matrix estimates and the oracle MLE for
+the precision matrix in (8) follows from (7).
 
-## Proof for Theorem 2.2
+## Proof for Theorem 2(ii)
+The proof for part (ii), though fairly straightforward, depends on Theorem
+10(i), Theorem 11(ii), and Proposition 1, and so we will return to this later.
+
+This part of the Theorem essentially gives and proves conditions under which
+conditions (4), (5), and (6) hold, which in turn imply (7) and (8) for all
+$\Omega \in \Gg^*(M, s, \lambda)$ up to a constant.  This part of the Theorem
+also establishes that $\varepsilon_\Omega$ is $o(1)$ for all $\Omega$ in the
+parameter space, implying that it has a negligible impact on the concentration
+bounds (7) and (8).
+
+## Proof for Theorem 2(iii)
+To prove the coupling inequality in (10), we first define a random vector
+$\eta^{ora} = \left(\eta_{ii}^{ora}, \eta_{ij}^{ora}, \eta_{jj}^{ora}\right)$,
+where
+$$
+\eta_{kl}^{ora} = \sqrt{n}\frac{\theta_{kl}^{ora} - \theta_{kl}}
+{\theta_{kk}\theta_{ll} + \theta_{kl}^2}
+$$
+By the KMT inequality, for which the authors cite Mason and Zhou (2012) for the
+one-dimensional case and Einmahl (1989) for the multidimensional case, there 
+exist constants $D_0, \vartheta \in (0, \infty)$ and a random Gaussian vector
+$Z = (Z_{ii}, Z_{ij}, Z_{jj}) \sim \Nn(0, \breve\Sigma)$ where $\breve\Sigma
+= \cov(\eta^{ora})$, such that $|Z_{kl}| \leq \vartheta\sqrt{n}$ for all $kl$
+implies
+$$
+\norm{\eta^{ora} - Z}_\infty \leq
+\frac{D_0}{\sqrt{n}} \left(
+1 + Z_{ii}^2 + Z_{ij}^2 + Z_{jj}^2
+\right)
+$$
+
+Let us now define $\Theta = (\theta_{ii}, \theta_{ij}, \theta_{jj})$, consider
+the function
+$$
+\omega_{ij}(\Theta) = -\frac{\theta_{ij}}{\theta_{ii}\theta_{jj} - \theta_{ij}^2}
+$$
+and take its Taylor expansion, which gives us:
+\begin{align*}
+    \omega_{ij}^{ora} - \omega_{ij}
+    &=  \la \nabla\omega_{ij}(\Theta), \Theta^{ora} - \Theta\ra
+        + \sum_{|\beta| = 2}R_\beta(\Theta^{ora})(\Theta-\Theta^{ora})^\beta
+\end{align*}
+where
+\begin{align*}
+    |\beta|     &\triangleq \sum_k \beta_k   \\
+    x^\beta     &\triangleq \prod_k x_k^{\beta_k}    \\
+    D^\beta f(x)&\triangleq \frac{\partial^{|\beta|} f}
+        {
+            \partial x_1^{\beta_1}
+            \partial x_2^{\beta_2}
+            \partial x_3^{\beta_3}
+        }
+\end{align*}
