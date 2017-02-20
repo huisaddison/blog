@@ -1,6 +1,6 @@
 Title: Discussion: Asymptotic Normality and Optimalities in Estimation of Large Gaussian Graphical Models, Part 2
-Date: 2017-02-11
-Modified: 2017-02-11
+Date: 2017-02-19
+Modified: 2017-02-19
 Category: Statistics
 Tags: math, stats, covariance, minimax, risk, precision, asymptotics, normality
 Slug: discuss-precmat-optimality-pt2
@@ -168,7 +168,8 @@ defined in (2) and (3) respectively.  Let $\delta \geq 1$.  Suppose $s \leq
     \PP\left\{
         \norm{\hat\Theta_{A, A} - \Theta_{A, A}^{ora}}_\infty
         > C_1 s \frac{\log p}{n}
-    \right\}\leq o\left(p^{-\delta + 1}\right)
+    \right\}\leq 6\varepsilon_\Omega p^{-\delta + 1}
+        + \frac{4p^{-\delta + 1}}{\sqrt{2\log p}}
     \end{align}
     and
     \begin{align}
@@ -176,7 +177,8 @@ defined in (2) and (3) respectively.  Let $\delta \geq 1$.  Suppose $s \leq
     \PP\left\{
         \norm{\hat\Omega_{A, A} - \Omega_{A, A}^{ora}}_\infty
         > C_1' s \frac{\log p}{n}
-    \right\}\leq o\left(p^{-\delta + 1}\right)
+    \right\}\leq 6\varepsilon_\Omega p^{-\delta + 1}
+        + \frac{4p^{-\delta + 1}}{\sqrt{2\log p}}
     \end{align}
     where $\Theta^{ora}_{A, A}$ and $\Omega^{ora}_{A, A}$ are the oracle
     estimators and $C_1$ is a positive constant depending only on
@@ -261,5 +263,118 @@ $$
 \right\}
 \leq \frac{p^{-\delta}(p-2)}{\sqrt{2\delta\log p}}
 $$
+
+Now, let's compare our covariance estimates to the oracle MLE:
+\begin{align*}
+\left| \hat\theta_{ij} - \theta_{ij}^{ora}\right|
+    &=  \left|
+        \frac{\hat\epsilon_i^\top\hat\epsilon_j}{n}
+        -
+        \frac{\epsilon_i^\top\epsilon_j}{n}
+        \right|
+\end{align*}
+Recalling that
+\begin{align*}
+\hat\epsilon_A
+    &= \XX_A - \XX_{A^c}\hat\beta_{A^c, A}  \\
+\epsilon_A
+    &= \XX_A - \XX_{A^c}\beta_{A^c, A}      \\
+\Rightarrow
+\hat\epsilon_A - \epsilon_A
+    &=  \XX_{A^c}\left(\beta_{A^c, A} - \hat\beta_{A^c, A}\right)
+\end{align*}
+we have:
+\begin{align*}
+\left| \hat\theta_{ij} - \theta_{ij}^{ora}\right|
+    &=  \frac{1}{n}\left|
+        \hat\epsilon_i^\top\hat\epsilon_j
+        -
+        \epsilon_i^\top\epsilon_j
+        \right| \\
+    &=  \frac{1}{n}\left|
+        \left(\epsilon_i 
+        + (\hat\epsilon_i - \epsilon_i)
+        \right)^\top
+        \left(\epsilon_j
+        + (\hat\epsilon_j - \epsilon_j)
+        \right)
+        -
+        \epsilon_i^\top\epsilon_j
+        \right| \\
+    &=  \frac{1}{n}\left|
+        \left(\epsilon_i 
+        +
+        \XX_{A^c}(\beta_i - \hat\beta_i)
+        \right)^\top
+        \left(\epsilon_j
+        +
+        \XX_{A^c}(\beta_j - \hat\beta_j)
+        \right)
+        -
+        \epsilon_i^\top\epsilon_j
+        \right| \\
+    &=  \frac{1}{n}
+        \left|
+        \epsilon_i^\top \epsilon_j
+        + \left(\beta_i - \hat\beta_i\right)^\top \XX_{A^c}^\top \epsilon_j
+        + \epsilon_i^\top \left(\beta_j - \hat\beta_j\right)\XX_{A^c}
+        + \left(\beta_i - \hat\beta_i\right)^\top \XX_{A^c}^\top
+            \XX_{A^c}\left(\beta_j - \hat\beta_j\right)
+        -\epsilon_i^\top \epsilon_j
+        \right| \\
+    &\leq  \frac{1}{n}\left[
+        \left|
+        \left(\beta_i - \hat\beta_i\right)^\top \XX_{A^c}^\top \epsilon_j
+        \right|
+        + \left|
+        \epsilon_i^\top \left(\beta_j - \hat\beta_j\right)\XX_{A^c}
+        \right|
+        + \left|\left(\beta_i - \hat\beta_i\right)^\top \XX_{A^c}^\top
+            \XX_{A^c}\left(\beta_j - \hat\beta_j\right)
+        \right|\right]  \\
+    &=  \frac{1}{n}\left[
+        \left|
+        \left(\beta_i - \hat\beta_i\right)^\top
+        \bar\DD^{-1/2}\bar\DD^{1/2} \XX_{A^c}^\top \epsilon_j
+        \right|
+        + \left|
+        \epsilon_i^\top \left(\beta_j - \hat\beta_j\right)
+        \bar\DD^{-1/2}\bar\DD^{1/2}\XX_{A^c}
+        \right|
+        + \left|\left(\beta_i - \hat\beta_i\right)^\top \XX_{A^c}^\top
+            \XX_{A^c}\left(\beta_j - \hat\beta_j\right)
+        \right|\right]\\
+    &\leq \frac{1}{n}\left[
+        \norm{
+            \left(\XX\bar\DD^{-1/2}\right)_{A^c}^\top\epsilon_i
+        }_\infty\norm{
+            \bar\DD^{1/2}\left(\beta_j - \hat\beta_j\right)
+        }_1
+        +
+        \norm{
+            \left(\XX\bar\DD^{-1/2}\right)_{A^c}^\top\epsilon_j
+        }_\infty\norm{
+            \bar\DD^{1/2}\left(\beta_i - \hat\beta_i\right)
+        }_1
+        +
+        \norm{
+        \XX_{A^c}\left(\beta_i - \hat\beta_i\right)
+        }\cdot\norm{
+        \XX_{A^c}\left(\beta_j - \hat\beta_j\right)
+        }
+    \right] \\
+    &\leq 2\sqrt{2\delta\theta_{mm}n^{-1}\log p}C_0
+            s\sqrt{\delta \frac{\log p}{n}}
+            + \frac{C_0s\delta\log p}{n}\\
+    &=  C_1 s\frac{\delta \log p}{n}
+\end{align*}
+with probability at least $1 - 2p^{-\delta + 1}\epsilon_\Omega
+- 2p^{-\delta + 1}(2\log p)^{-1/2}$, implying (7).
+
+[//]:   #(TODO: Why?  How do we get the bounds for the spectral norm?)
+
+[//]:   #(TODO: Why?  How do we get the other terms in the bound in prob?)
+
+Given that the spectrum of $\Theta_{A, A}$ is bounded, 
 
 ## Proof for Theorem 2.2
