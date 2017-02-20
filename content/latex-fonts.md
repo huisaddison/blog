@@ -1,4 +1,4 @@
-Title: Toying with Fonts in LateX
+Title: Toying with Fonts in LaTeX
 Date: 2017-02-17
 Modified: 2017-02-17
 Category: LaTeX
