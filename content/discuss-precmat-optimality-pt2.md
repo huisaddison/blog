@@ -1,6 +1,6 @@
 Title: Discussion: Asymptotic Normality and Optimalities in Estimation of Large Gaussian Graphical Models, Part 2
 Date: 2017-02-19
-Modified: 2017-02-19
+Modified: 2017-02-23
 Category: Statistics
 Tags: math, stats, covariance, minimax, risk, precision, asymptotics, normality
 Slug: discuss-precmat-optimality-pt2
@@ -138,10 +138,9 @@ The next condition is:
 \right\}
 \leq p^{-\delta+1}\varepsilon_\Omega
 \end{align}
-with $\bar \DD = \diag\left(\frac{\XX^\top\XX}{n}\right)$.  I'm not sure
-what this says beyond that the regression estimates will be close to the
-oracle estimators after rescaling by the standard deviations of the columns
-of the feature matrix.  I will update this post when I find out more.
+with $\bar \DD = \diag\left(\frac{\XX^\top\XX}{n}\right)$.  These two
+statements are  essentially a risk bounds on the lasso estimator, which will be
+discussed and proved in a future post.
 
 The final condition is, for $\theta_{ii}^{ora} = \frac{\norm{\XX_i
 - \XX{A^c}\beta_{A^c, i}}^2}{n}$,
@@ -213,13 +212,15 @@ is larger than a constant that we can control.  Statement (2) shows that
 the conditions are met such that statement (1) holds.  Statement (3) says that
 the rescaled oracle MLE behaves more or less asymptotically normally.
 
-[//]:   #(TODO: Talk to Harry to get more intuition about these statements, update.)
+Once we show these statements about the estimator relative to oracle MLEs,
+we will prove statements in *Theorem 3* relating the oracle MLEs to the true
+parameter values, and by the triangle inequality, we will have bounds on
+the distances between our estimates on the truth.
 
 ## Proof for Theorem 2(i)
 The values of $\theta_{ii}, \theta_{jj}$ are uniformly bounded, which implies
 that the desired concentration bound  (7) follows from (4) for
 $\theta^{ora}_{ii}$ and $\theta^{ora}_{jj}$.  
-[//]:   #(TODO: Why?)
 
 Therefore, we only need to be concerned about bounding $\theta^{ora}_{ij}$.
 Recall that we define $\bar \DD = \diag\left(\frac{\XX^\top \XX}{n}\right)$ and
@@ -254,7 +255,8 @@ observe that we may express
 Dividing $\XX\bar\DD^{-1/2}$ by $n$ gives the desired
 variance.  <div align="right"> &#8718; </div>
 
-It then follows from the union bound that:
+It then follows from the union bound and [Mill's Inequality](
+{filename}mills-inequality.md) that:
 $$
 \PP\left\{
 \norm{
@@ -375,11 +377,7 @@ we have:
     &=  C_1 s\frac{\delta \log p}{n}
 \end{align*}
 with probability at least $1 - 2p^{-\delta + 1}\epsilon_\Omega
-- 2p^{-\delta + 1}(2\log p)^{-1/2}$, implying (7).
-
-[//]:   #(TODO: Why?  How do we get the bounds for the spectral norm?)
-
-[//]:   #(TODO: Why?  How do we get the other terms in the bound in prob?)
+- 2p^{-\delta + 1}(2\log p)^{-1/2}$ by the union bound, implying (7).
 
 Given that the spectrum of $\Theta_{A, A}$ is bounded, the functional
 $\zeta_{kl}(\Theta_{A, A}) = \left(\Theta_{A, A}^{-1}\right)_{kl}$ is Lipschitz
