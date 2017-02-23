@@ -14,9 +14,12 @@ Summary: Discussion of paper on asymptotic properties of an entrywise estimator 
     \newcommand{\EE}{\mathbf{E}}
     \newcommand{\XX}{\mathbf{X}}
     \newcommand{\Nn}{\mathcal{N}}
-    \newcommand{\Nn}{\mathcal{N}}
+    \newcommand{\Gg}{\mathcal{G}}
+    \newcommand{\la}{\langle}
+    \newcommand{\ra}{\rangle}
     \DeclareMathOperator{\var}{var}
     \DeclareMathOperator{\diag}{diag}
+    \DeclareMathOperator{\cov}{cov}
     $$
 </div>
 
@@ -167,7 +170,8 @@ defined in (2) and (3) respectively.  Let $\delta \geq 1$.  Suppose $s \leq
     \PP\left\{
         \norm{\hat\Theta_{A, A} - \Theta_{A, A}^{ora}}_\infty
         > C_1 s \frac{\log p}{n}
-    \right\}\leq o\left(p^{-\delta + 1}\right)
+    \right\}\leq 6\varepsilon_\Omega p^{-\delta + 1}
+        + \frac{4p^{-\delta + 1}}{\sqrt{2\log p}}
     \end{align}
     and
     \begin{align}
@@ -175,7 +179,8 @@ defined in (2) and (3) respectively.  Let $\delta \geq 1$.  Suppose $s \leq
     \PP\left\{
         \norm{\hat\Omega_{A, A} - \Omega_{A, A}^{ora}}_\infty
         > C_1' s \frac{\log p}{n}
-    \right\}\leq o\left(p^{-\delta + 1}\right)
+    \right\}\leq 6\varepsilon_\Omega p^{-\delta + 1}
+        + \frac{4p^{-\delta + 1}}{\sqrt{2\log p}}
     \end{align}
     where $\Theta^{ora}_{A, A}$ and $\Omega^{ora}_{A, A}$ are the oracle
     estimators and $C_1$ is a positive constant depending only on
@@ -186,7 +191,7 @@ defined in (2) and (3) respectively.  Let $\delta \geq 1$.  Suppose $s \leq
     estimator, or the LSE after the scaled lasso selection.  Then (4),
     (5), and (6), and thus (7) and (8) hold for all $\Omega \in
     \mathcal{G}^*(M, s, \lambda)$ with a certain constant $C_0$ depending on
-    $\{\varepsilon, c_0, M\} only and_
+    $\{\varepsilon, c_0, M\}$ only and_
     \begin{align}
     \max_{\Omega \in \mathcal{G}^*(M, s, \lambda)} \varepsilon_\Omega = o(1)
     \end{align}
