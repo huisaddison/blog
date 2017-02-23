@@ -1,6 +1,6 @@
 Title: Mill's Inequality
 Date: 2017-02-22
-Modified: 2017-02-22
+Modified: 2017-02-23
 Category: Statistics
 Tags: stats, math, concentration-bounds, gaussian, tail-bounds
 Slug: mills-inequality
@@ -64,7 +64,9 @@ t\cdot \PP\{Z > t\}
 \right\}
 \end{align*}
 in the process using sneaky way to introduce a quantity that has a nice, clean
-closed-form integral.  This implies that:
+closed-form integral.  Closer examination shows that this is in fact a tighter
+version of Markov's Inequality; rather than taking $\EE X$, we take $\EE [X
+\one\{X > t\}]$.  This implies that:
 \begin{align*}
 \PP\{Z > t\}
 &=  \frac{\sigma}{t\sqrt{2\pi}}\exp\left\{
@@ -114,3 +116,4 @@ To balance between these interests, we can choose $t$ such that:
 $$
 \frac{nt^2}{2} = \log m
 $$
+giving us a bound that adapts to $m$.
