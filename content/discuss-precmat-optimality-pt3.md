@@ -61,7 +61,7 @@ that
 \norm{\hat\Omega - \Omega}_\infty > C_3 \max\left\{
 s\frac{\log p}{n}, \sqrt\frac{\log p}{n}
 \right\}
-\right\} \leq o(p^{-\delta + 3})
+\right\} = o(p^{-\delta + 3})
 \end{align}
 Furthermore, $\hat\omega_{ij}$ is asymptotically efficient with a consistent
 variance estimate
