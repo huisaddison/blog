@@ -342,7 +342,8 @@ we have:
         \left|
         \left(\beta_i - \hat\beta_i\right)^\top
         \bar\DD^{-1/2}\bar\DD^{1/2} \XX_{A^c}^\top \epsilon_j
-        \right|
+        \right| \\
+    &\qquad
         + \left|
         \epsilon_i^\top \left(\beta_j - \hat\beta_j\right)
         \bar\DD^{-1/2}\bar\DD^{1/2}\XX_{A^c}
@@ -356,8 +357,8 @@ we have:
             \left(\XX\bar\DD^{-1/2}\right)_{A^c}^\top\epsilon_i
         }_\infty\norm{
             \bar\DD^{1/2}\left(\beta_j - \hat\beta_j\right)
-        }_1
-        +
+        }_1 \\
+    &\qquad +
         \norm{
             \left(\XX\bar\DD^{-1/2}\right)_{A^c}^\top\epsilon_j
         }_\infty\norm{
@@ -439,3 +440,56 @@ where
             \partial x_3^{\beta_3}
         }
 \end{align*}
+We observe that Taylor's Theorem gives us a uniform upper bound on the
+coefficients of the remainder terms:
+$$
+\left|
+R_\beta\left(\Theta^{ora}_{A, A}\right)
+\right| \leq 2 \max_{|\alpha| = 2}\max_{\Theta_\in B}
+D^\alpha\omega_{ij}(\Theta) \leq C_2
+$$
+where $B$ is a sufficiently small compact ball centered at $\Theta$.  The upper
+bound holds when $\Theta^{ora}$ is in $B$, an assumption which can be
+satisfied by picking a small enough value $\vartheta$ in the assumption
+$\norm{\eta^{ora}}_\infty \leq \vartheta \sqrt{n}$.  Note that here $D^\alpha$
+is not a constant, but a second order derivative.  This bound follows from
+the fact that equality in the Taylor expansion is satisfied when evaluating
+the second order term with some $\xi$ between $\Theta$ and $\Theta^{ora}$, so
+the coefficients are naturally bounded above by the maximum value of the
+second order coefficients in $B$, as it encloses both $\Theta$ and
+$\Theta^{ora}$.  The bottom line is that when the oracle MLE's value is
+sufficiently close to the truth, a linear approximation is basically good
+enough.
+
+With this linear approximation to $\omega_{ij}$ as a function of $\theta_{ij}$
+(and a quadratic correction term we can control), we can then express this
+relationship in terms of $\kappa_{ij}$ and $\eta_{ij}$, which are simply
+$\omega_{ij}, \theta_{ij}$ rescaled by constants, respectively:
+$$
+\kappa_{ij}^{ora} = h_1\eta_{ii}^{ora}
++ h_2\eta_{ij}^{ora} + h_3\eta_{jj}^{ora}
++ \sum_{|\beta| = 2}
+\frac{D_\beta R_\beta(\Theta^{ora})}{\sqrt{n}}(\eta^{ora})^\beta
+$$
+where $h_1, h_2, h_3, D_\beta$ are constants.  Subtracting $Z' = h_1Z_1
++ h_2Z_2 + h_3Z_3 \sim \Nn(0, 1)$ from both sides and applying Hölder's
+Inequality, we obtain:
+$$
+|\kappa_{ij}^{ora} - Z'| \leq
+\left(
+\sum_{k=1}^3 |h_k|
+\right) \norm{Z - \eta^{ora}}_\infty + \frac{C_3}{\sqrt{n}}\norm{\eta^{ora}}^2
+$$
+Applying the KMT inequality and the fact that $\norm{\eta^{ora}}^2 \leq C_4
+(Z_{ii}^2 + Z_{ij}^2 + Z_{jj}^2)$ for some large constant $C_4$, we complete
+the proof:
+\begin{align*}
+|\kappa_{ij}^{ora} - Z'| &\leq
+\left(
+\sum_{k=1}^3 |h_k|
+\right) \norm{Z - \eta^{ora}}_\infty
++ \frac{C_3}{\sqrt{n}}\norm{\eta^{ora}}^2\\
+&\leq \frac{D_1}{\sqrt{n}} ( 1 + Z_{ii}^2 + Z_{ij}^2 + Z_{jj}^2)
+\end{align*}
+<div align="right"> &#8718; </div>
+
