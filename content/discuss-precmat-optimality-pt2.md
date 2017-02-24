@@ -52,7 +52,7 @@ lasso regression parameter estimates:
 which yield $\hat\epsilon_A$ as the residual estimates from regression $\XX_A$
 on $\XX_{A^c}$.  Then, we define:
 \begin{align}
-\hat\Theta_{A, A}   &=  \frac{\hat\epsilon_A^\top\epsilon_A}{n} \\
+\hat\Theta_{A, A}   &=  \frac{\hat\epsilon_A^\top\hat\epsilon_A}{n} \\
 \hat\Omega_{A, A}   &=  \hat\Theta_{A, A}^{-1}
 \end{align}
 
