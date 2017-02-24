@@ -1,14 +1,17 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*- #
 from __future__ import unicode_literals
+import datetime
 
+CURYEAR = datetime.date.today().year
 AUTHOR = 'Addison'
 
-HOMEURL = ''
+HOMEURL = 'http://huisaddison.com'
 HOMENAME = 'huisaddison'
 
 SITENAME = 'huisaddison/blog'
 SITEURL = ''
+BLOGSOURCEURL = 'https://github.com/huisaddison/blog'
 
 PATH = 'content'
 
