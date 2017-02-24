@@ -9,9 +9,19 @@ import os
 import sys
 sys.path.append(os.curdir)
 from pelicanconf import *
+import datetime
+
+CURYEAR = datetime.date.today().year
+
+HOMEURL = 'http://huisaddison.com'
+HOMENAME = 'huisaddison'
 
 SITEURL = 'http://huisaddison.com/blog'
 SITENAME = 'huisaddison/blog'
+
+BLOGSOURCEURL = 'https://github.com/huisaddison/blog'
+
+
 
 RELATIVE_URLS = False
 
