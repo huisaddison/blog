@@ -71,7 +71,7 @@ $$
 s_\lambda = s_\lambda(\Omega) = \max_j\sum_{i\neq j}
 \min\left\{1, \frac{|\omega_{ij}|}{\lambda}\right\}
 $$
-for $\Omega = (\omega_{ij})_1\leq i, j\leq p$.  The authors take $\lambda$
+for $\Omega = (\omega_{ij})_{1\leq i, j\leq p}$.  The authors take $\lambda$
 on the order $\sqrt\frac{\log p}{n}$ in this paper.
 
 Intuitively, this parameter space is a mix of the $\ell_0$ norm, which
