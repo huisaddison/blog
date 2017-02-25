@@ -71,7 +71,7 @@ $$
 s_\lambda = s_\lambda(\Omega) = \max_j\sum_{i\neq j}
 \min\left\{1, \frac{|\omega_{ij}|}{\lambda}\right\}
 $$
-for $\Omega = (\omega_{ij})_1\leq i, j\leq p$.  The authors take $\lambda$
+for $\Omega = (\omega_{ij})_{1\leq i, j\leq p}$.  The authors take $\lambda$
 on the order $\sqrt\frac{\log p}{n}$ in this paper.
 
 Intuitively, this parameter space is a mix of the $\ell_0$ norm, which
@@ -166,7 +166,7 @@ defined in (2) and (3) respectively.  Let $\delta \geq 1$.  Suppose $s \leq
 1.  _Suppose that conditions (7), (8), (9) hold with $C_0$ and
     $\varepsilon_\Omega$.  Then
     \begin{align}
-    \max_{A:A=\{i, j\}}
+    \max_{G^*(M, s, \lambda)}\max_{A:A=\{i, j\}}
     \PP\left\{
         \norm{\hat\Theta_{A, A} - \Theta_{A, A}^{ora}}_\infty
         > C_1 s \frac{\log p}{n}
@@ -175,7 +175,7 @@ defined in (2) and (3) respectively.  Let $\delta \geq 1$.  Suppose $s \leq
     \end{align}
     and
     \begin{align}
-    \max_{A:A=\{i, j\}}
+    \max_{G^*(M, s, \lambda)}\max_{A:A=\{i, j\}}
     \PP\left\{
         \norm{\hat\Omega_{A, A} - \Omega_{A, A}^{ora}}_\infty
         > C_1' s \frac{\log p}{n}
