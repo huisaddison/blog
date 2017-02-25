@@ -1,16 +1,18 @@
 Title: Le Cam's Method
 Date: 2017-02-05
-Modified: 2017-02-05
+Modified: 2017-02-24
 Category: Statistics
 Tags: math, stats, minimax, risk, le-cam
 Slug: lecams-method
 Summary: A brief discussion of Le Cam's two-point argument for minimax lower bounds.
-$$
-    \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
-    \newcommand{\EE}{\mathbf{E}}
-    \newcommand{\Pp}{\mathcal{P}}
-    \newcommand{\Dd}{\mathcal{D}}
-$$
+<div style="display:none">
+    $$
+        \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+        \newcommand{\EE}{\mathbf{E}}
+        \newcommand{\Pp}{\mathcal{P}}
+        \newcommand{\Dd}{\mathcal{D}}
+    $$
+</div>
 
 Le Cam's two-point method is a fundamental tool in the establishment of minimax
 lower bounds.  After identifying suitable subsets of the parameter space, the
@@ -119,8 +121,15 @@ subsets of the parameter space with a suitable degree of separation.  The
 true challenge is identifying these subsets of the parameter space in a way
 that gives a useful bound.
 
+It's worth noting that intuitively, the search for a useful bound involves
+a balancing act between the separation distance distance $\delta$ and the
+total variation affinity between $\mathcal{P}_1$ and $\mathcal{P}_2$.  We
+could maximize the total variation affinity by taking $P_1 = P_2$, but then
+$\delta = 0$.  Conversely, choosing $\mathcal{P}_1, \mathcal{P}_2$ such that
+$\delta$ is large may cause $\norm{P_1 \wedge P_2}$ to vanish.
+
 Better rates may be achieved by using Assouad's Lemma, which applies Le Cam's
 method in a multiple comparisons setting.  Bin Yu also remarks that "Le Cam's
 method often gives the optimal rate when a real function is estimated...
 [whereas Assouad and Fano] seem to be effective when the whole unknown function
-is being estimated.
+is being estimated."
