@@ -67,7 +67,7 @@ proofs to attain concentration bounds via random matrix theory.
 The authors assume that the $X_i$'s are subgaussian; that is, there exists
 $\rho > 0$ such that:
 \begin{equation}\label{eq:subgaussian}
-\mathbf{P}\{|v^T(X_1 - \mathbf{E} X_1| > t\} \leq \exp\left\{
+\mathbf{P}\{|v^T(X_1 - \mathbf{E} X_1)| > t\} \leq \exp\left\{
 -\frac{t^2\rho}{2}\right\}
 \end{equation}
 for all $t > 0$ and $\Vert{v}\Vert_2=1$.
@@ -108,8 +108,8 @@ b)^2$.
 To prove the bound on the bias, the authors note that the operator norm of a
 symmetric matrix is upper bounded by its $\ell_1$ norm.  Therefore, we have:
 \begin{equation}\label{eq:operator-upperbound-bias}
-\mathbf{E}\Vert \breve\Sigma - \mathbf{E} \breve\Sigma\Vert^2
-\leq \left[\max_{i=1, \dotsc, p} \sum_{j: |i-j| > k} |\sigma_{ij}\right]^2
+\Vert \mathbf{E}\breve\Sigma - \Sigma\Vert^2
+\leq \left[\max_{i=1, \dotsc, p} \sum_{j: |i-j| > k} |\sigma_{ij}|\right]^2
 \leq M^2 k^{-2\alpha}
 \end{equation}
 This inequality holds by construction (see Equation \eqref{eq:parameter-space}).
@@ -212,7 +212,7 @@ where $C$ is an evolving constant.
 ### Putting It All Together
 Having walked through the steps of bounding the bias:
 $$
-\mathbf{E}\Vert \breve\Sigma - \mathbf{E} \breve\Sigma\Vert^2
+\Vert \mathbf{E}\breve\Sigma - \Sigma\Vert^2
 \leq M^2 k^{-2\alpha} = Ck^{-2\alpha}
 $$
 
