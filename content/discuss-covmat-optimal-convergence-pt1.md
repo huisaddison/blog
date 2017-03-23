@@ -118,26 +118,33 @@ This inequality holds by construction (see Equation \eqref{eq:parameter-space}).
 The authors rely on random matrix theory to bound the variance.  Of particular
 note is
 
-**Lemma 2.** _There exists a submatrix $M_l^{(m)}$:_
+**Lemma 2.** _Define the submatrix $M_l^{(m)}$:_
+$$
+M_l^{(m)} = \left(
+\tilde\sigma_{ij}\mathbf{1}\{l \leq i < l + m, l \leq j < l + m\}
+\right)_{p\times p}
+$$
+_then we have the following bound:_
 $$
 \Vert \breve\Sigma - \mathbf{E}\breve\Sigma\Vert \leq 3 N^{(m)}
-= \Vert M_l^{(m)} - \mathbf{E} M_l^{(m)}\Vert
+= \max_{1 \leq l \leq p - m + 1}\Vert M_l^{(m)} - \mathbf{E} M_l^{(m)}\Vert
 $$
 
 They also provide a concentration bound on the operator norm of this submatrix.
 
 **Lemma 3.** _There is a constant $\rho_1 > 0$ such that_
 $$
-\mathbf{P}\left\{N^{(m)} > x\right\} \leq 2p5^m\exp(-nx^2\rho_1)
+\mathbf{P}\left\{N_l^{(m)} > x\right\} \leq 2p5^m\exp(-nx^2\rho_1)
 $$
-_for all $0 < x < \rho_1$ and $1-m \leq 1 \leq p$._
+_for all $0 < x < \rho_1$ and $1-m \leq l \leq p$._
 
 Therefore, by Lemma 2, we have:
 \begin{align*}
 \mathbf{E}\Vert \breve\Sigma - \mathbf{E}\breve\Sigma\Vert^2
 &\leq 9 \mathbf{E}\left(N^{(m)}\right)^2                    \\
-&= 9 \mathbf{E}\left(N^{(m)}\right)^2[I(N^{(m)} \leq x) + I(N^{(m)} > x)]   \\
-&\leq 9 [x^2 +\mathbf{E} \left(N^{(m)}\right)^2I(N^{(m)} > x)]
+&= 9 \mathbf{E}\left(N^{(m)}\right)^2[\mathbf{1}(N^{(m)} \leq x)
+  + \mathbf{1}(N^{(m)} > x)]   \\
+&\leq 9 [x^2 +\mathbf{E} \left(N^{(m)}\right)^2\mathbf{1}(N^{(m)} > x)]
 \end{align*}
 
 The next few steps are quite tricky to understand.
@@ -150,7 +157,7 @@ for some $l$.  We note that we may bound the operator norm of a submatrix by
 the operator norm of the full matrix by recalling the definition of an
 operator norm
 $$
-\Vert Av \Vert_{\mathrm{op}} = \sup\{\Vert{Av}\Vert: v \in V, \Vert v \Vert = 1\}
+\Vert A \Vert_{\mathrm{op}} = \sup\{\Vert{Av}\Vert: v \in V, \Vert v \Vert = 1\}
 $$
 and seeing that for any vector $v$, $\Vert A_\mathrm{sub} v \Vert \leq \Vert
 Av\Vert$.  Therefore, we may establish that:
@@ -173,8 +180,8 @@ $$
 Finally, we may apply Cauchy-Schwarz:
 \begin{align*}
 \mathbf{E}\Vert \breve\Sigma - \mathbf{E}\breve\Sigma\Vert^2
-&\leq C_1 \left[x^2 + \mathbf{E}\left(\Vert\breve\Sigma\Vert_F + C\right)
-I(N^{(m)} > x)\right]   \\
+&\leq C_1 \left[x^2 + \mathbf{E}\left(\Vert\breve\Sigma\Vert_F + C\right)^2
+\mathbf{1}(N^{(m)} > x)\right]   \\
 &\leq C_1 \left[x^2 + \sqrt{\mathbf{E}\left(\Vert\breve\Sigma\Vert_F +
 C\right)^4} \sqrt{\mathbf{P}(N^{(m)} > x)}\right]
 \end{align*}
@@ -190,7 +197,7 @@ $x=4\sqrt{\frac{\log{p}+m}{n\rho_1}}$, and recalling **Lemma 3**, we have:
 
 We are able to bound the Frobenius norm:
 $$
-\sqrt{\mathbf{E}\left(\Vert\breve\Sigma\Vert_F + C\right)^4} \leq p^2
+\sqrt{\mathbf{E}\left(\Vert\breve\Sigma\Vert_F + C\right)^4} \leq Cp^2
 $$
 by observing that the squared Frobenius norm decouples the entries of the
 matrix, and we are able to bound each of the $p^2$ entries by a constant,
