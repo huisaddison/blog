@@ -89,14 +89,14 @@ Let us consider the $\Sigma(\theta)$ where $\theta$ is a vector of
 $k$ ones and $\tau = 2^{-\alpha - 1}M$.  Then
 $$
 \Sigma(\theta) = \mathbf{I}_{p\times p}
-    + M (k + 2)^{-\alpha -1}\sum_{m=1}^k B(m, k)
+    + M (2k)^{-\alpha -1}\sum_{m=1}^k B(m, k)
 $$
 We observe that $\sum_{m=1}^k B(m, k)$ is a matrix of ones on the
 off-diagonals up to row and column $2k \leq p$.  Therefore, the worst-case
 sum of entries more than $k$ away from the diagonal is:
 \begin{align*}
-    \frac{k}{2} M k^{-\alpha - 1} 2^{- \alpha - 1}
-    &=  M k^{-\alpha} 2^{- \alpha - 2}  \\
+    k\cdot M k^{-\alpha - 1} 2^{- \alpha - 1}
+    &=  M k^{-\alpha} 2^{- \alpha - 1}  \\
     &\leq M k^{-\alpha}
 \end{align*}
 Without loss of generality the authors assume $M_0 > 1$ and $\rho > 1$; 
@@ -108,7 +108,7 @@ We now construct a second parameter space $\mathcal{F}_{12} \subset
 \mathcal{F}$ as follows:
 $$
 \mathcal{F}_{12} = \left\{
-\Sigma_m: \Sigma_m \mathbf{I}_{p\times p} + \left(
+\Sigma_m: \Sigma_m =\mathbf{I}_{p\times p} + \left(
 \sqrt{\frac{\tau}{n}}\mathbf{1}\{i = j = m\}\right)_{p \times p},
 0 \leq m \leq p_1
 \right\}
@@ -169,7 +169,7 @@ $$
 }{
     H(\theta, \theta')
 }\cdot\frac{k}{2}\cdot
-\min_{H(\theta, \theta')}\norm{\mathbf{P}_\theta \wedge\mathbf{P}_{\theta'}}
+\min_{H(\theta, \theta')=1}\norm{\mathbf{P}_\theta \wedge\mathbf{P}_{\theta'}}
 $$
 
 The authors give a natural interpretation of Assouad's Lemma in terms of
@@ -343,13 +343,13 @@ $j, m$:
     }{
         \prod_{1\leq k \leq p_1} \phi_1(x_k^i)
     }d\left\{x_k^i\right\}_{1\leq k \leq p_1}   \\
-&=  \prod_{1\leq i\neq n}\int
+&=  \prod_{1\leq i\leq n}\int
     \left[\prod_{1 \leq k \leq p_1\\k \not\in\{j, m\}}
     \phi_1(x_k^i)\right]
     \phi(x_m^i)\phi(x_j^i)
     d\left\{x_k^i\right\}_{1\leq k \leq p_1}    \\
 &\text{(Independence.)} \\
-&=  \prod_{1\leq i\neq n}
+&=  \prod_{1\leq i\leq n}
     \left[
     \left[
     \prod_{1 \leq k \leq p_1\\k \not\in\{j, m\}}
@@ -359,7 +359,7 @@ $j, m$:
     \int\phi(x_m^i)d x_m^i
     \int\phi(x_j^i)d x_j^i
     \right] \\
-&=  \prod_{1\leq i\neq n}
+&=  \prod_{1\leq i\leq n}
     1   \\
 &=  1
 \end{align*}
