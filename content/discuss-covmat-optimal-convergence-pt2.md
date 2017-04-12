@@ -303,8 +303,8 @@ Jensen's inequality in line (2).  This allows us to go on to establish a bound
 on the total variation affinity:
 $$
 \norm{\mathbf{P}_{\theta_0} \wedge \mathbf{\bar P}}
-\leq  1 - \frac{1}{2}\left(\int \frac{(\frac{1}{p_1}\sum f_m)^2}{f_0}d\mu - 1
-\right)^\frac{1}{2}\leq c
+\geq  1 - \frac{1}{2}\left(\int \frac{(\frac{1}{p_1}\sum f_m)^2}{f_0}d\mu - 1
+\right)^\frac{1}{2}
 $$
 we need only show that $\int \frac{(\frac{1}{p_1}\sum f_m)^2}
 {f_0}d\mu - 1\rightarrow 0$.  Let's open up this term and see what we find.
