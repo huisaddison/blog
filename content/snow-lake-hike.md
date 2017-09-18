@@ -1,7 +1,7 @@
 Title: Snow Lake Hike
 Date: 2017-09-17
 Category: Photography
-Tags: photography, digital, ricoh-gr
+Tags: photography, hiking, snoqualmie-pass, snow-lake, gem-lake
 Slug: snow-lake-hike
 Summary: Some pictures from a hike in Snoqualmie Pass.
 
