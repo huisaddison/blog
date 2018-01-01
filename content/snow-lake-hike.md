@@ -13,7 +13,11 @@ but the lake was sixty degrees Fahrenheit at most, and not particularly
 inviting).  
 
 From there, we hiked the extra mile or so to Gem Lake and made our way back.
-Here are some pictures from the hike.
+This photograph, my favorite, is of Gem Lake.
+
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/huisaddison/37297715065/in/album-72157689213948545" title="r0023142"><img src="https://farm5.staticflickr.com/4380/37297715065_5f32b9baea_b.jpg" width="1024" height="678" alt="r0023142"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+
+Here are the other pictures from the hike.
 
 <a data-flickr-embed="true"  href="https://www.flickr.com/photos/huisaddison/albums/72157689213948545" title="Snow Lake Trail"><img src="https://farm5.staticflickr.com/4359/37124278612_6cbc0d3f19_b.jpg" width="1024" height="678" alt="Snow Lake Trail"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
 
