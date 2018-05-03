@@ -14,6 +14,7 @@ SITEURL = ''
 BLOGSOURCEURL = 'https://github.com/huisaddison/blog'
 
 PATH = 'content'
+STATIC_PATHS = ['img']
 
 TIMEZONE = 'America/New_York'
 

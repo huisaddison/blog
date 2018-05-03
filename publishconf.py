@@ -21,7 +21,7 @@ SITENAME = 'huisaddison/blog'
 
 BLOGSOURCEURL = 'https://github.com/huisaddison/blog'
 
-
+STATIC_PATHS = ['img']
 
 RELATIVE_URLS = False
 
