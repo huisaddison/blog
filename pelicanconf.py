@@ -28,8 +28,20 @@ AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 
 PLUGIN_PATHS = ['../pelican-plugins']
-PLUGINS = ['render_math']
+PLUGINS = [
+    'render_math',
+    'tipue_search',
+]
 THEME = '../blog-theme'
+DIRECT_TEMPLATES=((
+    'index',
+    'tags',
+    'categories',
+    'authors',
+    'archives',
+    'search',
+))
+
 
 # Blogroll
 '''

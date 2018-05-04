@@ -28,10 +28,21 @@ RELATIVE_URLS = False
 DELETE_OUTPUT_DIRECTORY = True
 
 PLUGIN_PATHS = ['../pelican-plugins']
-PLUGINS = ['render_math']
+PLUGINS = [
+    'render_math',
+    'tipue_search',
+]
 
 THEMES = '../blog-theme'
 
+DIRECT_TEMPLATES=((
+    'index',
+    'tags',
+    'categories',
+    'authors',
+    'archives',
+    'search',
+))
 
 # Following items are often useful when publishing
 
